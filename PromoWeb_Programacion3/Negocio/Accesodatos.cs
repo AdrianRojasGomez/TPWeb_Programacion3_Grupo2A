@@ -1,0 +1,118 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Negocio
+{
+    public class Accesodatos
+    {
+
+
+        private SqlConnection conexion;
+        private SqlCommand comando;
+        private SqlDataReader lector;
+
+        public SqlDataReader Lector
+        {
+
+            get { return lector; }
+        }
+
+        public Accesodatos()
+        {
+
+            //estaban
+
+            //conexion = new SqlConnection("Server=localhost,1433; Database=CATALOGO_P3_DB; Integrated Security=False; User ID=sa; Password=Esteban94*;");
+            //comando = new SqlCommand();
+
+            // conexion = new SqlConnection("Server=localhost,1433; Database=CATALOGO_P3_DB; Integrated Security=False; User ID=sa; Password=Esteban94*;");
+            comando = new SqlCommand();
+
+            ///matias
+            conexion = new SqlConnection("server = .\\SQLEXPRESS02; database = CATALOGO_P3_DB; integrated security =true ;");
+            // comando = new SqlCommand();
+
+            //AdriR
+            ////  conexion = new SqlConnection("Server=localhost,1433; Database=CATALOGO_P3_DB; Integrated Security=False; User ID=sa; Password=BaseDeDatos#2;");
+            // comando = new SqlCommand();
+
+        }
+
+        public void SetearConsulta(string consulta)
+        {
+
+            comando.CommandType = System.Data.CommandType.Text;
+
+            comando.CommandText = consulta;
+        }
+
+        public void EjecutarLectura()
+        {
+
+            comando.Connection = conexion;
+            try
+            {
+                conexion.Open();
+
+                lector = comando.ExecuteReader();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public void EjecutarAccion()
+        {
+            comando.Connection = conexion;
+            try
+            {
+                conexion.Open();
+                comando.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+        }
+
+        public object EjecutarEscalar()
+        {
+            comando.Connection = conexion;
+            conexion.Open();
+            return comando.ExecuteScalar();
+        }
+
+        public void SetearParametro(string nombre, object valor)
+        {
+            comando.Parameters.AddWithValue(nombre, valor);
+        }
+
+
+        public void SetearParametros(string nombre, object valor)
+        {
+
+            comando.Parameters.AddWithValue(nombre, valor);
+
+        }
+
+        public void CerrarConexion()
+        {
+            if (lector != null)
+                lector.Close();
+            conexion.Close();
+
+        }
+
+
+
+
+    }
+}

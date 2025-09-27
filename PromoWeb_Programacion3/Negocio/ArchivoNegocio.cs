@@ -77,6 +77,56 @@ namespace negocio
                 datos.CerrarConexion();
             }
         }
+       public List<Articulo> ListarConSP()
+        {
+            List<Articulo> lista = new List<Articulo>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+
+                datos.SetearSP("SP_ObtenerArticulos");
+
+                datos.EjecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Articulo aux = new Articulo();
+                    aux.Id = (int)datos.Lector["ID"];
+                    aux.Codigo = (string)datos.Lector["Codigo"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Descripcion = (string)datos.Lector["Descripcion"];
+
+                    aux.Precio = (decimal)datos.Lector["Precio"];
+
+                    aux.ImagenUrl = new dominio.Imagen { ImagenUrl = (string)datos.Lector["ImagenUrl"] };
+
+                    aux.Categoria = new dominio.Categoria
+                    {
+                        Id = (int)datos.Lector["IdCategoria"],
+                        Descripcion = (string)datos.Lector["Categoria"]
+                    };
+
+                    aux.Marca = new dominio.Marca
+                    {
+                        Id = (int)datos.Lector["IdMarca"],
+                        Descripcion = (string)datos.Lector["Marca"]
+                    };
+
+                    lista.Add(aux);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+
+                datos.CerrarConexion();
+            }
+        }
         //metodo para agregar articulos
         public int Agregar(Articulo articulo)
         {

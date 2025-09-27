@@ -1,47 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
+using System.Dynamic;
 
-namespace Negocio
+namespace negocio
 {
-    public class Accesodatos
+    public class AccesoDatos
     {
-
 
         private SqlConnection conexion;
         private SqlCommand comando;
         private SqlDataReader lector;
-
+        //propiedad para el lector
         public SqlDataReader Lector
         {
 
+
             get { return lector; }
         }
-
-        public Accesodatos()
+        //constructor
+        public AccesoDatos()
         {
-
-            //estaban
-
-            //conexion = new SqlConnection("Server=localhost,1433; Database=CATALOGO_P3_DB; Integrated Security=False; User ID=sa; Password=Esteban94*;");
-            //comando = new SqlCommand();
-
-            // conexion = new SqlConnection("Server=localhost,1433; Database=CATALOGO_P3_DB; Integrated Security=False; User ID=sa; Password=Esteban94*;");
+            
+            //esteban
+            conexion = new SqlConnection("Server=localhost,1433; Database=CATALOGO_P3_DB; Integrated Security=False; User ID=sa; Password=Esteban94*;");
+           //matias
+           //conexion = new SqlConnection("server = .\\SQLEXPRESS02; database = CATALOGO_P3_DB; integrated security =true ;");
+           //AdriR
+           // conexion = new SqlConnection("Server=localhost,1433; Database=CATALOGO_P3_DB; Integrated Security=False; User ID=sa; Password=BaseDeDatos#2;");
+                   
+          
             comando = new SqlCommand();
 
-            ///matias
-            conexion = new SqlConnection("server = .\\SQLEXPRESS02; database = CATALOGO_P3_DB; integrated security =true ;");
-            // comando = new SqlCommand();
-
-            //AdriR
-            ////  conexion = new SqlConnection("Server=localhost,1433; Database=CATALOGO_P3_DB; Integrated Security=False; User ID=sa; Password=BaseDeDatos#2;");
-            // comando = new SqlCommand();
-
         }
-
+        //metodo para setear consulta
         public void SetearConsulta(string consulta)
         {
 
@@ -49,7 +44,7 @@ namespace Negocio
 
             comando.CommandText = consulta;
         }
-
+        //metodo para ejecutar lectura
         public void EjecutarLectura()
         {
 
@@ -66,7 +61,7 @@ namespace Negocio
                 throw ex;
             }
         }
-
+        //metodo para ejecutar accion
         public void EjecutarAccion()
         {
             comando.Connection = conexion;
@@ -82,27 +77,22 @@ namespace Negocio
             }
 
         }
-
+        //metodo para ejecutar escalar
         public object EjecutarEscalar()
         {
             comando.Connection = conexion;
             conexion.Open();
             return comando.ExecuteScalar();
         }
-
-        public void SetearParametro(string nombre, object valor)
-        {
-            comando.Parameters.AddWithValue(nombre, valor);
-        }
-
-
-        public void SetearParametros(string nombre, object valor)
+        //metodo para setear parametro
+       
+        public void SetearParametros(string nombre,object valor)
         {
 
             comando.Parameters.AddWithValue(nombre, valor);
 
         }
-
+        //metodo para cerrar conexion
         public void CerrarConexion()
         {
             if (lector != null)
@@ -110,9 +100,5 @@ namespace Negocio
             conexion.Close();
 
         }
-
-
-
-
     }
 }

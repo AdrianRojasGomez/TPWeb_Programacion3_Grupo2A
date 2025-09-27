@@ -1,4 +1,5 @@
 ﻿using Dominio;
+using negocio;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -18,20 +19,21 @@ namespace Negocio
         public List<Voucher> ListarVourches()
         {
             List<Voucher> lista = new List<Voucher>();
-            Accesodatos accesoDatos = new Accesodatos();
+            AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                accesoDatos.SetearConsulta("select id, descripcion from MARCAS");
-                accesoDatos.EjecutarLectura();
+                AccesoDatos datosVerif = new AccesoDatos();
+                datosVerif.SetearConsulta("select id, descripcion from MARCAS");
+                datosVerif.EjecutarLectura();
 
-                while (accesoDatos.Lector.Read())
+                while (datosVerif.Lector.Read())
                 {
                     Voucher aux = new Voucher();
-                    aux.Id = (int)accesoDatos.Lector["Id"];
-                    aux.CodigoVouchers = (string)accesoDatos.Lector["CodigoVouchers"];
+                    aux.Id = (int)datosVerif.Lector["Id"];
+                    aux.CodigoVouchers = (string)datosVerif.Lector["CodigoVouchers"];
                     
-                    aux.FechaCanje = (DateTime)accesoDatos.Lector["FechaCanje"];
+                    aux.FechaCanje = (DateTime)datosVerif.Lector["FechaCanje"];
                 }
                 return lista;
             }
@@ -42,7 +44,7 @@ namespace Negocio
             }
             finally
             {
-                accesoDatos.CerrarConexion();
+                datos.CerrarConexion();
 
             }
 

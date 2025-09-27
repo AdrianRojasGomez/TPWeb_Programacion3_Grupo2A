@@ -48,9 +48,14 @@
                     </div>
                 </div>
             </nav>
-            <h1>Mi master</h1>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
+            <div class="container">
+
+             
+
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+
         </div>
     </form>
 </body>

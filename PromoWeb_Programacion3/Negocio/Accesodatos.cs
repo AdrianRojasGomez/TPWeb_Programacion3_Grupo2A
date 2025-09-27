@@ -44,6 +44,12 @@ namespace negocio
 
             comando.CommandText = consulta;
         }
+
+        public void SetearSP(string sp)
+        {
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.CommandText = sp;
+        }
         //metodo para ejecutar lectura
         public void EjecutarLectura()
         {

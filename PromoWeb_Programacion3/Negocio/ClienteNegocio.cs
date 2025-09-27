@@ -66,7 +66,7 @@ namespace Negocio
                     aux.cp = (string)lector["cp"];
                     aux.direccion = (string)lector["direccion"];
 
-                    aux.vouchers = new Vouchers();
+                    aux.vouchers = new Voucher();
 
                     lista.Add(aux);
 

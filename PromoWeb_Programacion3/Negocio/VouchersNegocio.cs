@@ -15,9 +15,9 @@ namespace Negocio
         SqlCommand comando = new SqlCommand();
         SqlDataReader lector;
 
-        public List<Vouchers> ListarVourches()
+        public List<Voucher> ListarVourches()
         {
-            List<Vouchers> lista = new List<Vouchers>();
+            List<Voucher> lista = new List<Voucher>();
             Accesodatos accesoDatos = new Accesodatos();
 
             try
@@ -27,7 +27,7 @@ namespace Negocio
 
                 while (accesoDatos.Lector.Read())
                 {
-                    Vouchers aux = new Vouchers();
+                    Voucher aux = new Voucher();
                     aux.Id = (int)accesoDatos.Lector["Id"];
                     aux.CodigoVouchers = (string)accesoDatos.Lector["CodigoVouchers"];
                     

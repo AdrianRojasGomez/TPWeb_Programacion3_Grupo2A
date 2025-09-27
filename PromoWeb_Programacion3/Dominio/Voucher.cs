@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    public class Vouchers
+    public class Voucher
     {
 
         public int Id { get; set; }

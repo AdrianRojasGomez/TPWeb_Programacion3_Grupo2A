@@ -22,7 +22,7 @@ namespace Dominio
         public string direccion { get; set; } 
 
 
-        public Vouchers vouchers { get; set; }
+        public Voucher vouchers { get; set; }
 
 
     }

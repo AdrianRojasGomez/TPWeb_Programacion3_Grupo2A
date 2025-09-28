@@ -1,4 +1,4 @@
-﻿using Dominio;
+﻿using dominio;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -59,14 +59,14 @@ namespace Negocio
                     aux.Id = (int)lector["ID"];
                     aux.Nombre = (string)lector["Nombre"];
                     aux.Apellido = (string)lector["Apellido"];
-                    aux.Dni = (string)lector["Dni"];
+                    aux.Documento = (string)lector["Dni"];
                     aux.Email = (string)lector["Email"];
 
-                    aux.ciudad = (string)lector["ciudad"];
-                    aux.cp = (string)lector["cp"];
-                    aux.direccion = (string)lector["direccion"];
+                    aux.Ciudad = (string)lector["ciudad"];
+                    aux.CP = (int)lector["cp"];
+                    aux.Direccion = (string)lector["direccion"];
 
-                    aux.vouchers = new Voucher();
+                    aux.Voucher = new Voucher();
 
                     lista.Add(aux);
 

@@ -17,7 +17,7 @@
   
 
       <asp:Label ID="lblPassword" runat="server" CssClass="visually-hidden" AssociatedControlID="txtCodigo" ></asp:Label>
-<asp:TextBox ID="txtCodigo" runat="server" CssClass="form-control"  ></asp:TextBox>
+<asp:TextBox ID="txtCodigo"  runat="server" OnTextChanged="txtCodigo_TextChanged" CssClass="form-control"  ></asp:TextBox>
 
 
   </div>

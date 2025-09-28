@@ -14,7 +14,7 @@ namespace Dominio
 
         public string CodigoVouchers { get; set; }  
 
-        public DateTime FechaCanje { get; set; }
+        public DateTime? FechaCanje { get; set; }
 
         public int IdCliente { get; set; }   
         public int IdArticulo { get; set; }

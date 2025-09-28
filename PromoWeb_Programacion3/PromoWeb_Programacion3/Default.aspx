@@ -27,7 +27,7 @@
     <asp:Button ID="BtnConfigVouchers" CssClass="btn btn-primary mb-3"  runat="server" Text="Confirmar Vouchers" OnClick="BtnConfigVouchers_Click" />
   </div>
 
-        <div> <asp:Label ID="LblMensaje"  runat="server"  Text="Label"></asp:Label>  </div>
+        <div> <asp:Label ID="LblMensaje"  runat="server"  ></asp:Label>  </div>
         
 </form>
 

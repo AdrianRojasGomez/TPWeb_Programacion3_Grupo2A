@@ -14,41 +14,26 @@ namespace PromoWeb_Programacion3
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            txtCodigo.Text = "Ingrese el codigo aqui";
+            if (!IsPostBack) { txtCodigo.Text = "Ingrese el codigo aqui"; }
+            
         }
 
         protected void BtnConfigVouchers_Click(object sender, EventArgs e)
-        {
-            AccesoDatos accesoDatos = new AccesoDatos();
-          
-           List<Voucher>listavoucher = new List<Voucher>();
-            
+        { 
+   
+            List<Voucher> lista = new List<Voucher>();
 
-          /*
-            accesoDatos.SetearConsulta("SELECT  a.Codigo, a.Nombre, a.Descripcion, a.Precio,m.Descripcion AS Marca,   c.Descripcion AS Categoria,i.ImagenUrl FROM Articulos a LEFT JOIN Marcas m     ON m.Id = a.IdMarca  LEFT JOIN Categorias c ON c.Id = a.IdCategoria left join IMAGENES i on i.IdArticulo = a.Id WHERE Codigo = @Codigo");
+            if(txtCodigo.Text.ToLower() == "" || txtCodigo.Text.ToLower() == "Ingrese el codigo aqui")
+            {
+                LblMensaje.Text = "ponga un codigo por favor";
 
-
-            accesoDatos.SetearParametros("@Codigo", articulo.Trim());
-            accesoDatos.EjecutarLectura();*/
+                return;
 
 
-
-
+            }
             try
             {
-                
-                accesoDatos.SetearParametros();
-                accesoDatos.SetearParametros();
-
-                accesoDatos.SetearParametros();
-
-                while (accesoDatos.Lector.Read()) { 
-                
-                    
-                
-                
-                }
-
+                lista = listavoucher(txtCodigo.Text);
 
             }
             catch (Exception ex)
@@ -57,11 +42,22 @@ namespace PromoWeb_Programacion3
                 throw ex;
             }
 
-            finally
+            if(lista == null || lista.Count == 0)
             {
 
-                accesoDatos.CerrarConexion();
+                LblMensaje.Text = "no se encontro el vouchers";
             }
+            else if (lista[0].FechaCanje != null) 
+            {
+                LblMensaje.Text = "el voucher ya se uso";
+                
+             
+            }
+            else
+            { LblMensaje.Text = "el voucher se puede usar";   }
+
+
+       
 
         }
 
@@ -84,12 +80,7 @@ namespace PromoWeb_Programacion3
             List<Voucher> listavoucher = new List<Voucher>();
 
 
-            /*
-              accesoDatos.SetearConsulta("SELECT  a.Codigo, a.Nombre, a.Descripcion, a.Precio,m.Descripcion AS Marca,   c.Descripcion AS Categoria,i.ImagenUrl FROM Articulos a LEFT JOIN Marcas m     ON m.Id = a.IdMarca  LEFT JOIN Categorias c ON c.Id = a.IdCategoria left join IMAGENES i on i.IdArticulo = a.Id WHERE Codigo = @Codigo");
-
-
-              accesoDatos.SetearParametros("@Codigo", articulo.Trim());
-              accesoDatos.EjecutarLectura();*/
+         
 
 
 
@@ -97,7 +88,7 @@ namespace PromoWeb_Programacion3
             try
             {
 
-                accesoDatos.SetearConsulta("select  v.CodigoVoucher,v.IdCliente,v.FechaCanje,v.IdArticulo " + " from Vouchers v " + "WHERE v.CodigoVoucher = @CodigoVoucher");
+                accesoDatos.SetearConsulta("select CodigoVoucher,FechaCanje  " + " from Vouchers  " + "WHERE CodigoVoucher = @CodigoVoucher");
                 accesoDatos.SetearParametros("@CodigoVoucher",voucher.Trim());
                 accesoDatos.EjecutarLectura();
 
@@ -105,14 +96,7 @@ namespace PromoWeb_Programacion3
 
                 while (accesoDatos.Lector.Read())
                 {
-                  /*
-                    Articulo aux = new Articulo();
-
-
-                    aux.Codigo = (string)accesoDatos.Lector["Codigo"];
-                    aux.Nombre = (string)accesoDatos.Lector["Nombre"];
-                    aux.Descripcion = (string)accesoDatos.Lector["Descripcion"];
-                    aux.Precio = (decimal)accesoDatos.Lector["Precio"];*/
+                 
 
                     Voucher aux = new Voucher();
 

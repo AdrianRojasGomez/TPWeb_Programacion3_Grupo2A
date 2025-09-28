@@ -28,7 +28,7 @@ namespace PromoWeb_Programacion3
 
         protected void btnIrCanjearCupon_Click(object sender, EventArgs e)
         {
-            Response.Redirect("CanjearCupon.aspx");
+            Response.Redirect("Default.aspx");
         }
     }
 }

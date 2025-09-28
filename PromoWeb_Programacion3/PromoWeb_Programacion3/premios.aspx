@@ -18,10 +18,12 @@
             color: white;
             padding: 30px;
             text-align: center;
+            border-radius: 0% 0% 10px 10px;
         }
 
         .btn-primary {
-            background: linear-gradient(45deg, #4ECDC4, #44A08D);
+            background: linear-gradient(45deg, #4ECDC4, #FF6B6B);
+            margin: 30px;
             border: none;
             border-radius: 25px;
             padding: 12px 30px;
@@ -44,34 +46,32 @@
         <div class="header">
             <h1><i class="fas fa-gift"></i>Gran Promoción</h1>
             <p class="mb-0">¡Participa y gana increíbles premios!</p>
+            <div class="d-grid">
+                <asp:Button class="btn btn-primary" ID="btnIrCanjearCupon" runat="server" OnClick="btnIrCanjearCupon_Click" Text="¡Canjea tu Cupon Aqui!" />
+            </div>
 
         </div>
         <div>
+
             <h1 class="titulo"><i class="fas fa-gift"></i>Conoce nuestros Premios </h1>
-            <div class="d-grid">
-
-                <asp:Button class="btn btn-primary" ID="btnIrCanjearCupon" runat="server" OnClick="btnIrCanjearCupon_Click" Text="Canjear Cupon" />
-
-            </div>
         </div>
 
         <hr />
         <div class="row row-cols-1 row-cols-md-3 g-4">
-
-            <%  
-                foreach (dominio.Articulo art in ListaArticulo)
-                {%>
-
-            <div class="col">
-                <div class="card h-100">
-                    <img src="<%: art.ImagenUrl%>" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title"><%:art.Nombre %></h5>
-                        <p class="card-text"><%:art.Descripcion%></p>
+            <asp:Repeater ID="rptArticulos" runat="server">
+                <ItemTemplate>
+                    <div class="col">
+                        <div class="card h-100">
+                            <img src="<%# Eval("ImagenUrl.ImagenUrl") %>" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title"><%# Eval("Nombre") %></h5>
+                                <p class="card-text"><%# Eval("Descripcion") %></p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <%  }  %>
+                </ItemTemplate>
+            </asp:Repeater>
         </div>
+
     </div>
 </asp:Content>

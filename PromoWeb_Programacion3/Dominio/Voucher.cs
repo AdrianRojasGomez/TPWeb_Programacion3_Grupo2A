@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dominio
+namespace dominio
 {
     public class Voucher
     {
@@ -18,11 +17,6 @@ namespace Dominio
 
         public int IdCliente { get; set; }   
         public int IdArticulo { get; set; }
-
-
-
-
-
-
+        public string CodigoVoucher { get; set; }
     }
 }

@@ -17,13 +17,18 @@ namespace PromoWeb_Programacion3
         {
             ArchivoNegocio negocio = new ArchivoNegocio();
             ListaArticulo=negocio.ListarConSP();
-                            
+
+            if (!IsPostBack)
+            {
+                rptArticulos.DataSource = ListaArticulo;
+                rptArticulos.DataBind();
+            }
 
         }
 
         protected void btnIrCanjearCupon_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Default.aspx");
+            Response.Redirect("CanjearCupon.aspx");
         }
     }
 }

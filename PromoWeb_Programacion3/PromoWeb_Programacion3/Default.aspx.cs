@@ -4,8 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+
 using dominio;
-using Dominio;
 using negocio;
 
 namespace PromoWeb_Programacion3

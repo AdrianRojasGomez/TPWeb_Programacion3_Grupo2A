@@ -67,6 +67,7 @@
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
     <Content Include="premios.aspx" />
+    <Content Include="ClienteFormulario.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Default.aspx.cs">
@@ -93,6 +94,13 @@
     </Compile>
     <Compile Include="premios.aspx.designer.cs">
       <DependentUpon>premios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ClienteFormulario.aspx.cs">
+      <DependentUpon>ClienteFormulario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ClienteFormulario.aspx.designer.cs">
+      <DependentUpon>ClienteFormulario.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

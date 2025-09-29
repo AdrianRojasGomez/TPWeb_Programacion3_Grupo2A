@@ -1,4 +1,5 @@
-﻿using System;
+﻿using dominio;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -24,8 +25,7 @@ namespace dominio
 
         public decimal Precio { get; set; }
         public Imagen ImagenUrl { get; set; }
-
-       
-
+        public Cliente Cliente { get; set; }
+        public Voucher Voucher { get; set; }
     }
 }

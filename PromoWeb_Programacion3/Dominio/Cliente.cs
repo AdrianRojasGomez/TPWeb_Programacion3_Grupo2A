@@ -4,26 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dominio
+namespace dominio
 {
-    public  class Cliente
-    {
-        public int Id { get; set; }                 
-        public string Nombre { get; set; }
-        public string Apellido { get; set; }
-        public string Dni { get; set; }             
-        public string Email { get; set; }           
-        
-
-        public string ciudad { get; set; }
-
-        public string cp { get; set; } 
-
-        public string direccion { get; set; } 
-
-
-        public Voucher vouchers { get; set; }
-
-
+    
+       public class Cliente 
+        {
+            public int Id { get; set; }
+            public string Documento { get; set; }
+            public string Nombre { get; set; }
+            public string Apellido { get; set; }
+            public string Email { get; set; }
+            public string Direccion { get; set; }
+            public string Ciudad { get; set; }
+            public int CP { get; set; }
+        public Voucher Voucher { get; set; }
     }
+    
 }

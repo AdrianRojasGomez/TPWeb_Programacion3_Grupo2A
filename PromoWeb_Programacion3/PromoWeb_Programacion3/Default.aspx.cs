@@ -95,7 +95,8 @@ namespace PromoWeb_Programacion3
             try
             {
 
-                accesoDatos.SetearConsulta("select CodigoVoucher,FechaCanje  " + " from Vouchers  " + "WHERE CodigoVoucher = @CodigoVoucher");
+               /// accesoDatos.SetearConsulta("select CodigoVoucher,FechaCanje  " + " from Vouchers  " + "WHERE CodigoVoucher = @CodigoVoucher");
+                accesoDatos.SetearSP("SP_ObtenerVoucherPorCodigo");
                 accesoDatos.SetearParametros("@CodigoVoucher", voucher.Trim());
                 accesoDatos.EjecutarLectura();
 

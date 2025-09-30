@@ -6,13 +6,14 @@
 </asp:Content>
 
 <asp:Content ID="ContentMain" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1>Canjes de Vouchers</h1>
+    <h1>Canje de Vouchers</h1>
 
     <form class="row g-3">
   <div class="col-auto">
     <label for="staticEmail2" class="visually-hidden">Email</label>
     <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="Ingrese el Codigo del Vouchers">
   </div>
+     <hr class="my-3 border-0" />
   <div class="col-auto">
   
 
@@ -21,8 +22,9 @@
 
 
   </div>
-        <hr class="d-none" />  
-  <div class="col-auto">
+        <hr class="my-3 border-0" />
+
+        <div class="col-auto">
     
     <asp:Button ID="BtnConfigVouchers" CssClass="btn btn-primary mb-3"  runat="server" Text="Confirmar Vouchers" OnClick="BtnConfigVouchers_Click" />
   </div>

@@ -28,6 +28,7 @@
                             <div class="card-body">
                                 <h5 class="card-title"><%# Eval("Nombre") %></h5>
                                 <p class="card-text"><%# Eval("Descripcion") %></p>
+                                <asp:Button ID="btnElegir" CssClass="btn btn-primary mb-3" runat="server" Text="Seleccionar Premio" />
                             </div>
                         </div>
                     </div>

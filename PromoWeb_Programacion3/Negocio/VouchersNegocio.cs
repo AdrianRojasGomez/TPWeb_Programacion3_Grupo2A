@@ -24,7 +24,7 @@ namespace Negocio
             try
             {
                 AccesoDatos datosVerif = new AccesoDatos();
-                datosVerif.SetearConsulta("select id, descripcion from MARCAS");
+                datosVerif.SetearSP("Sp_listarmarcas");
                 datosVerif.EjecutarLectura();
 
                 while (datosVerif.Lector.Read())

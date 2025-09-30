@@ -65,6 +65,8 @@
     <Content Include="Content\premios.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Inicio.aspx" />
+    <Content Include="VouchersInvalido.aspx" />
     <Content Include="Web.config" />
     <Content Include="premios.aspx" />
     <Content Include="ClienteFormulario.aspx" />
@@ -79,6 +81,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Inicio.aspx.cs">
+      <DependentUpon>Inicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inicio.aspx.designer.cs">
+      <DependentUpon>Inicio.aspx</DependentUpon>
     </Compile>
     <Compile Include="MiMaster.Master.cs">
       <DependentUpon>MiMaster.Master</DependentUpon>
@@ -101,6 +110,13 @@
     </Compile>
     <Compile Include="ClienteFormulario.aspx.designer.cs">
       <DependentUpon>ClienteFormulario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VouchersInvalido.aspx.cs">
+      <DependentUpon>VouchersInvalido.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VouchersInvalido.aspx.designer.cs">
+      <DependentUpon>VouchersInvalido.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

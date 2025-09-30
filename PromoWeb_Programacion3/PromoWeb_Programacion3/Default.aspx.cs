@@ -15,15 +15,15 @@ namespace PromoWeb_Programacion3
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack) { txtCodigo.Text = "Ingrese el codigo aqui"; }
-            
+
         }
 
         protected void BtnConfigVouchers_Click(object sender, EventArgs e)
-        { 
-   
+        {
+
             List<Voucher> lista = new List<Voucher>();
 
-            if(txtCodigo.Text.ToLower() == "" || txtCodigo.Text.ToLower() == "Ingrese el codigo aqui")
+            if (txtCodigo.Text.ToLower() == "" || txtCodigo.Text.ToLower() == "Ingrese el codigo aqui")
             {
                 LblMensaje.Text = "ponga un codigo por favor";
 
@@ -42,22 +42,29 @@ namespace PromoWeb_Programacion3
                 throw ex;
             }
 
-            if(lista == null || lista.Count == 0)
+            if (lista == null || lista.Count == 0)
             {
 
-                LblMensaje.Text = "no se encontro el vouchers";
+
+
+                Response.Redirect("VouchersInvalido.aspx");
             }
-            else if (lista[0].FechaCanje != null) 
+            else if (lista[0].FechaCanje != null)
             {
-                LblMensaje.Text = "el voucher ya se uso";
-                
-             
+
+
+                Response.Redirect("VouchersInvalido.aspx");
             }
             else
-            { LblMensaje.Text = "el voucher se puede usar";   }
+            { LblMensaje.Text = "el voucher se puede usar"; }
+
+            if (LblMensaje.Text == "el voucher se puede usar")
+            {
+                Response.Redirect("premios.aspx");
 
 
-       
+            }
+
 
         }
 
@@ -80,7 +87,7 @@ namespace PromoWeb_Programacion3
             List<Voucher> listavoucher = new List<Voucher>();
 
 
-         
+
 
 
 
@@ -89,14 +96,14 @@ namespace PromoWeb_Programacion3
             {
 
                 accesoDatos.SetearConsulta("select CodigoVoucher,FechaCanje  " + " from Vouchers  " + "WHERE CodigoVoucher = @CodigoVoucher");
-                accesoDatos.SetearParametros("@CodigoVoucher",voucher.Trim());
+                accesoDatos.SetearParametros("@CodigoVoucher", voucher.Trim());
                 accesoDatos.EjecutarLectura();
 
-               
+
 
                 while (accesoDatos.Lector.Read())
                 {
-                 
+
 
                     Voucher aux = new Voucher();
 
@@ -106,7 +113,7 @@ namespace PromoWeb_Programacion3
                         aux.FechaCanje = (DateTime)accesoDatos.Lector["FechaCanje"];
                     else
                         aux.FechaCanje = null;
-                    
+
 
                     listavoucher.Add(aux);
 

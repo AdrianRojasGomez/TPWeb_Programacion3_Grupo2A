@@ -6,7 +6,7 @@
 </asp:Content>
 
 <asp:Content ID="ContentMain" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1>Arrancamos</h1>
+    <h1>Canjes de Vouchers</h1>
 
     <form class="row g-3">
   <div class="col-auto">

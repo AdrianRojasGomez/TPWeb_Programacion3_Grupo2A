@@ -3,8 +3,19 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="row">
-        <div class="col-6">
+
+    <link href="Content/style.css" rel="stylesheet" />
+
+    <div class="container">
+
+        <div class="header">
+            <h1><i class="fas fa-gift"></i>Introduce tus datos!</h1>
+            <p class="mb-0">es obligarotio completar los datos para participar</p>
+
+        </div>
+
+        <div class="form-container">
+          <div class="col-12">            
             <h1>Ingresa tus datos:</h1>
 
             <div class="mb-3 row">
@@ -57,7 +68,8 @@
             </div>
 
             <div class="col-12">
-                <asp:Button Text ="Participar"  ID="btnParticipar" CssClass="btn btn-primary" OnClick="btnParticipar_Click" runat="server"/>
+                <asp:Button Text="Participar" ID="btnParticipar" CssClass="btn btn-primary" OnClick="btnParticipar_Click" runat="server" />
+            </div>
             </div>
         </div>
     </div>

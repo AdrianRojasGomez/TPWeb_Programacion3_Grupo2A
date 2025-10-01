@@ -28,32 +28,26 @@ namespace PromoWeb_Programacion3
                 LblMensaje.Text = "ponga un codigo por favor";
 
                 return;
-
-
             }
             try
             {
                 lista = listavoucher(txtCodigo.Text);
-
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
 
             if (lista == null || lista.Count == 0)
             {
 
-
-
-                Response.Redirect("VouchersInvalido.aspx");
+                LblMensaje.Text = "no se encontro el vouchers";
             }
             else if (lista[0].FechaCanje != null)
             {
+                LblMensaje.Text = "el voucher ya se uso";
 
 
-                Response.Redirect("VouchersInvalido.aspx");
             }
             else
             { LblMensaje.Text = "el voucher se puede usar"; }
@@ -95,8 +89,12 @@ namespace PromoWeb_Programacion3
             try
             {
 
+
+                accesoDatos.SetearConsulta("select CodigoVoucher,FechaCanje  " + " from Vouchers  " + "WHERE CodigoVoucher = @CodigoVoucher");
+
                /// accesoDatos.SetearConsulta("select CodigoVoucher,FechaCanje  " + " from Vouchers  " + "WHERE CodigoVoucher = @CodigoVoucher");
                 accesoDatos.SetearSP("SP_ObtenerVoucherPorCodigo");
+
                 accesoDatos.SetearParametros("@CodigoVoucher", voucher.Trim());
                 accesoDatos.EjecutarLectura();
 

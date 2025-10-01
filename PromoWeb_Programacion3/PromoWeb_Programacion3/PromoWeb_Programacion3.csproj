@@ -63,11 +63,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\premios.css" />
+    <Content Include="Content\style.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
     <Content Include="premios.aspx" />
     <Content Include="ClienteFormulario.aspx" />
+    <Content Include="SeleccionPremios.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Default.aspx.cs">
@@ -101,6 +103,13 @@
     </Compile>
     <Compile Include="ClienteFormulario.aspx.designer.cs">
       <DependentUpon>ClienteFormulario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SeleccionPremios.aspx.cs">
+      <DependentUpon>SeleccionPremios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SeleccionPremios.aspx.designer.cs">
+      <DependentUpon>SeleccionPremios.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

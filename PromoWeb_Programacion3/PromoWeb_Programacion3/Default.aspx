@@ -6,29 +6,44 @@
 </asp:Content>
 
 <asp:Content ID="ContentMain" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1>Arrancamos</h1>
+    <link href="Content/style.css" rel="stylesheet" />
 
-    <form class="row g-3">
-  <div class="col-auto">
-    <label for="staticEmail2" class="visually-hidden">Email</label>
-    <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="Ingrese el Codigo del Vouchers">
-  </div>
-  <div class="col-auto">
-  
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-gift"></i>Introduce tu codigo Promocional Aqui!</h1>
+            <p class="mb-0">¡Participa y gana increíbles premios!</p>
 
-      <asp:Label ID="lblPassword" runat="server" CssClass="visually-hidden" AssociatedControlID="txtCodigo" ></asp:Label>
-<asp:TextBox ID="txtCodigo"  runat="server" OnTextChanged="txtCodigo_TextChanged" CssClass="form-control"  ></asp:TextBox>
+        </div>
+
+        <div class="mt-4">
+            <h1 class="titulo"><i class="fas fa-gift"></i>Ingrese el Codigo del Voucher</h1>
+        </div>
+
+        <hr />
+        <div class="d-flex align-items-center mb-3">
+
+            <asp:TextBox ID="txtCodigo" runat="server"
+                OnTextChanged="txtCodigo_TextChanged"
+                CssClass="form-control me-3 flex-grow-1"
+                Text="Ingrese el codigo aqui" />
+
+            <asp:Button ID="BtnConfigVouchers"
+                CssClass="btn btn-primary flex-shrink-0"
+                runat="server"
+                Text="Confirmar Voucher"
+                OnClick="BtnConfigVouchers_Click" />
+
+            <asp:Label ID="lblPassword" runat="server" CssClass="visually-hidden" AssociatedControlID="txtCodigo"></asp:Label>
+
+        </div>
+
+        <div>
+            <asp:Label ID="LblMensaje" runat="server" CssClass="text-danger"></asp:Label>
+        </div>
 
 
-  </div>
-        <hr class="d-none" />  
-  <div class="col-auto">
-    
-    <asp:Button ID="BtnConfigVouchers" CssClass="btn btn-primary mb-3"  runat="server" Text="Confirmar Vouchers" OnClick="BtnConfigVouchers_Click" />
-  </div>
+        <hr />
 
-        <div> <asp:Label ID="LblMensaje"  runat="server"  ></asp:Label>  </div>
-        
-</form>
+    </div>
 
 </asp:Content>

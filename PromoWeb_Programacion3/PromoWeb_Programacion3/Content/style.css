@@ -1,0 +1,40 @@
+﻿
+.main-container {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    margin: 50px auto;
+    max-width: 600px;
+    overflow: hidden;
+}
+
+.header {
+    background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+    color: white;
+    text-align: center;
+    border-radius: 0% 0% 10px 10px;
+    width: 1272px;
+    height: 246px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;    
+    margin-left: auto;
+    margin-right: auto;
+}
+.form-container {
+    
+    background-color: white;
+    padding: 30px;
+   
+    
+    max-width: 800px;
+    width: 100%; 
+   
+    margin: 30px auto; 
+}
+
+    /* Opcional: Centrar el botón "Participar" */
+    .form-container .col-12 {
+        text-align:left;
+    }

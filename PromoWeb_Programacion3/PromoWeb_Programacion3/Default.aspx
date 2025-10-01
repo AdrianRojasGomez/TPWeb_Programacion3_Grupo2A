@@ -6,6 +6,7 @@
 </asp:Content>
 
 <asp:Content ID="ContentMain" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
     <link href="Content/style.css" rel="stylesheet" />
 
     <div class="container">
@@ -45,5 +46,6 @@
         <hr />
 
     </div>
+
 
 </asp:Content>

@@ -6,6 +6,7 @@
 </asp:Content>
 
 <asp:Content ID="ContentMain" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
     <link href="Content/style.css" rel="stylesheet" />
 
     <div class="container">
@@ -25,7 +26,8 @@
             <asp:TextBox ID="txtCodigo" runat="server"
                 OnTextChanged="txtCodigo_TextChanged"
                 CssClass="form-control me-3 flex-grow-1"
-                Text="Ingrese el codigo aqui" />
+                onfocus="if(this.value==='Ingrese el código aquí'){ this.value=''; }"
+                onblur="if(this.value===''){ this.value='Ingrese el código aqui'; }" />
 
             <asp:Button ID="BtnConfigVouchers"
                 CssClass="btn btn-primary flex-shrink-0"
@@ -45,5 +47,6 @@
         <hr />
 
     </div>
+
 
 </asp:Content>

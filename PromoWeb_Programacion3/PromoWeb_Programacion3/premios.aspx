@@ -18,6 +18,7 @@
             <h1 class="titulo"><i class="fas fa-gift"></i>Conoce nuestros Premios </h1>
         </div>
 
+
              <hr />
     <div class="row row-cols-1 row-cols-md-3 g-4">
     <asp:Repeater ID="rptArticulos" runat="server">
@@ -27,6 +28,7 @@
                     
                     <div class="card-img-top-container">
                         <img src="<%# Eval("ImagenUrl.ImagenUrl") %>" class="card-img-top" alt="...">
+
                     </div>
                     <div class="card-body">
                         <h5 class="card-title"><%# Eval("Nombre") %></h5>

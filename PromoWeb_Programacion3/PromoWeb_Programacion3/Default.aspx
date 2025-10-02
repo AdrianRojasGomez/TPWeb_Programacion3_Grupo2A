@@ -26,7 +26,8 @@
             <asp:TextBox ID="txtCodigo" runat="server"
                 OnTextChanged="txtCodigo_TextChanged"
                 CssClass="form-control me-3 flex-grow-1"
-                Text="Ingrese el codigo aqui" />
+                onfocus="if(this.value==='Ingrese el código aquí'){ this.value=''; }"
+                onblur="if(this.value===''){ this.value='Ingrese el código aqui'; }" />
 
             <asp:Button ID="BtnConfigVouchers"
                 CssClass="btn btn-primary flex-shrink-0"

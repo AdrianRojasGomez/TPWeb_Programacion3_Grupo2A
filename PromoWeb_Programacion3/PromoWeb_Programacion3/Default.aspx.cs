@@ -14,7 +14,7 @@ namespace PromoWeb_Programacion3
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack) { txtCodigo.Text = "Ingrese el codigo aqui"; }
+            if (!IsPostBack) { txtCodigo.Text = "Ingrese el código aquí"; }
 
         }
 
@@ -23,7 +23,7 @@ namespace PromoWeb_Programacion3
 
             List<Voucher> lista = new List<Voucher>();
 
-            if (txtCodigo.Text.ToLower() == "" || txtCodigo.Text.ToLower() == "Ingrese el codigo aqui")
+            if (txtCodigo.Text.ToLower() == "" || txtCodigo.Text.ToLower() == "Ingrese el código aquí")
             {
                 LblMensaje.Text = "ponga un codigo por favor";
 
@@ -42,19 +42,21 @@ namespace PromoWeb_Programacion3
             {
 
                 LblMensaje.Text = "no se encontro el vouchers";
+
+                Response.Redirect("VouchersInvalido.aspx");
             }
             else if (lista[0].FechaCanje != null)
             {
                 LblMensaje.Text = "el voucher ya se uso";
 
-
+                Response.Redirect("VouchersInvalido.aspx");
             }
             else
             { LblMensaje.Text = "el voucher se puede usar"; }
 
             if (LblMensaje.Text == "el voucher se puede usar")
             {
-                Response.Redirect("premios.aspx");
+                Response.Redirect("SeleccionPremios.aspx.aspx");
 
 
             }
@@ -65,7 +67,7 @@ namespace PromoWeb_Programacion3
         protected void txtCodigo_TextChanged(object sender, EventArgs e)
         {
 
-
+            
 
 
 
@@ -90,7 +92,9 @@ namespace PromoWeb_Programacion3
             {
 
 
-                accesoDatos.SetearConsulta("select CodigoVoucher,FechaCanje  " + " from Vouchers  " + "WHERE CodigoVoucher = @CodigoVoucher");
+                
+
+
 
                /// accesoDatos.SetearConsulta("select CodigoVoucher,FechaCanje  " + " from Vouchers  " + "WHERE CodigoVoucher = @CodigoVoucher");
                 accesoDatos.SetearSP("SP_ObtenerVoucherPorCodigo");

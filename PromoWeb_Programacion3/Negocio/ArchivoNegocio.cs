@@ -108,8 +108,9 @@ namespace negocio
             try
             {
 
+
                 datos.SetearSP("SP_ObtenerArticulos");
-               //datos.SetearSP("SP_ObtenerArticulos2222");
+
 
 
                 datos.EjecutarLectura();

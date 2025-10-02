@@ -27,7 +27,7 @@ namespace Negocio
             {
 
                 // matias
-                conexion.ConnectionString = "server = .\\SQLEXPRESS02; database = CATALOGO_P3_DB; integrated security =true ;";
+                //conexion.ConnectionString = "server = .\\SQLEXPRESS02; database = CATALOGO_P3_DB; integrated security =true ;";
 
 
                 comando.CommandType = System.Data.CommandType.Text;

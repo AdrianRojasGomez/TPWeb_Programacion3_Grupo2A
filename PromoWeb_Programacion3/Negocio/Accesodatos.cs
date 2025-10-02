@@ -26,12 +26,12 @@ namespace negocio
         {
 
 
-           // conexion = new SqlConnection("Server=localhost,1433; Database=PROMOS_DB; Integrated Security=False; User ID=sa; Password=Esteban94*;");
+            conexion = new SqlConnection("Server=localhost,1433; Database=PROMOS_DB; Integrated Security=False; User ID=sa; Password=Esteban94*;");
 
 
 
             //matias
-            conexion = new SqlConnection("server = .\\SQLEXPRESS02; database = PROMOS_DB; integrated security =true ;");
+            //conexion = new SqlConnection("server = .\\SQLEXPRESS02; database = PROMOS_DB; integrated security =true ;");
             //AdriR
 
             //conexion = new SqlConnection("Server=localhost,1433; Database=PROMOS_DB; Integrated Security=False; User ID=sa; Password=BaseDeDatos#2;");

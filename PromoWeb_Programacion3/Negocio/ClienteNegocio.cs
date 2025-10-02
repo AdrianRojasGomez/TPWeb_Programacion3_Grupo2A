@@ -13,7 +13,7 @@ namespace Negocio
     {
 
 
-       /* public List<Cliente> clientes()
+        public List<Cliente> clientes()
         {
 
             List<Cliente> lista = new List<Cliente>();
@@ -95,5 +95,5 @@ namespace Negocio
 
 
 
-   */ }
+   }
 }

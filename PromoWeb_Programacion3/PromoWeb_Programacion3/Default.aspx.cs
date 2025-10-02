@@ -48,7 +48,10 @@ namespace PromoWeb_Programacion3
 
             }
             else
-            { LblMensaje.Text = "el voucher se puede usar"; }
+            { LblMensaje.Text = "el voucher se puede usar";
+                Response.Redirect($"premios.aspx?voucherId={lista}");
+            }
+           
 
 
         }

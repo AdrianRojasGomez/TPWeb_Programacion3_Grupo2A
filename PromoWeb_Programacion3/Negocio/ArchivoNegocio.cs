@@ -216,7 +216,6 @@ namespace negocio
 
             try
             {
-                // Actualizo los campos principales del artículo
                 datos.SetearConsulta(
                     "UPDATE Articulos " +
                     "SET Codigo = @Codigo, " +

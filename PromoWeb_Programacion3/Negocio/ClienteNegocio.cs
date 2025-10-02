@@ -13,7 +13,7 @@ namespace Negocio
     {
 
 
-        public List<Cliente> clientes()
+       /* public List<Cliente> clientes()
         {
 
             List<Cliente> lista = new List<Cliente>();
@@ -33,16 +33,16 @@ namespace Negocio
                 comando.CommandType = System.Data.CommandType.Text;
 
                 /// ////matias
-                comando.CommandText = "SELECT " +
-    "    ISNULL(C.ID, 0)        AS ID, " +
-    "    ISNULL(C.Nombre, '')   AS Nombre, " +
-    "    ISNULL(C.Apellido, '') AS Apellido, " +
-    "    ISNULL(C.Dni, '')      AS Dni, " +
-    "    ISNULL(C.Email, '')    AS Email, " +
-    "    ISNULL(C.ciudad, '')   AS ciudad, " +
-    "    ISNULL(C.cp, '')       AS cp, " +
-    "    ISNULL(C.direccion, '') AS direccion " +
-    "FROM Clientes C";
+                 comando.CommandText = "SELECT " +
+                "    ISNULL(C.ID, 0)        AS ID, " +
+                "    ISNULL(C.Nombre, '')   AS Nombre, " +
+                "    ISNULL(C.Apellido, '') AS Apellido, " +
+                "    ISNULL(C.Dni, '')      AS Dni, " +
+                "    ISNULL(C.Email, '')    AS Email, " +
+                "    ISNULL(C.ciudad, '')   AS ciudad, " +
+                "    ISNULL(C.cp, '')       AS cp, " +
+                "    ISNULL(C.direccion, '') AS direccion " +
+                "FROM Clientes C";
 
 
 
@@ -95,5 +95,5 @@ namespace Negocio
 
 
 
-    }
+   */ }
 }

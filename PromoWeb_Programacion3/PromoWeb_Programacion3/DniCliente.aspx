@@ -16,12 +16,8 @@
 
     </div>
      <hr class="my-3 border-0" />
-    
-    
-
-
-   
-    <asp:TextBox ID="txtDni" CssClass="form-control" runat="server"></asp:TextBox>
+     
+       <asp:TextBox ID="txtDni" CssClass="form-control" runat="server"></asp:TextBox>
 
    <hr class="my-3 border-0" />
     <asp:Button ID="Button1" runat="server" Text="Button" />

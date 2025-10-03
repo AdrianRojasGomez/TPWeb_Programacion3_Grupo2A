@@ -31,13 +31,12 @@
 
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Ver tus Premios
-                                </a>
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Ver dni  </a>
                                 <ul class="dropdown-menu">
 
-                                    <li><a class="dropdown-item" href="SeleccionPremios.aspx">Seleccion de premios</a></li>
+                                    <li><a class="dropdown-item" href="DniCliente.aspx">moduloDNI</a></li>
 
-                                    <li><a class="dropdown-item" href="SeleccionPremio.aspx">Another action</a></li>
+                                    <li><a class="dropdown-item" href="SeleccionPremio.aspx">Modulo Seleccion de premios</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>

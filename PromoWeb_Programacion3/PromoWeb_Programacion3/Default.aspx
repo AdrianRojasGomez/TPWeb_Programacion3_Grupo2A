@@ -29,11 +29,7 @@
                 onfocus="if(this.value==='Ingrese el código aquí'){ this.value=''; }"
                 onblur="if(this.value===''){ this.value='Ingrese el código aqui'; }" />
 
-            <asp:Button ID="BtnConfigVouchers"
-                CssClass="btn btn-primary flex-shrink-0"
-                runat="server"
-                Text="Confirmar Voucher"
-                OnClick="BtnConfigVouchers_Click" />
+            <asp:Button ID="BtnConfigVouchers"          CssClass="btn btn-primary flex-shrink-0"  runat="server" Text="Confirmar Voucher" OnClick="BtnConfigVouchers_Click" />
 
             <asp:Label ID="lblPassword" runat="server" CssClass="visually-hidden" AssociatedControlID="txtCodigo"></asp:Label>
 

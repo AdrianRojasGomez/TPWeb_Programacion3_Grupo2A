@@ -68,11 +68,11 @@
     <Content Include="DniCliente.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Inicio.aspx" />
+    <Content Include="SeleccionPremio.aspx" />
     <Content Include="VouchersInvalido.aspx" />
     <Content Include="Web.config" />
     <Content Include="premios.aspx" />
     <Content Include="ClienteFormulario.aspx" />
-    <Content Include="SeleccionPremios.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Default.aspx.cs">
@@ -121,14 +121,19 @@
     <Compile Include="ClienteFormulario.aspx.designer.cs">
       <DependentUpon>ClienteFormulario.aspx</DependentUpon>
     </Compile>
-
+    <Compile Include="SeleccionPremio.aspx.cs">
+      <DependentUpon>SeleccionPremio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SeleccionPremio.aspx.designer.cs">
+      <DependentUpon>SeleccionPremio.aspx</DependentUpon>
+    </Compile>
     <Compile Include="VouchersInvalido.aspx.cs">
       <DependentUpon>VouchersInvalido.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="VouchersInvalido.aspx.designer.cs">
       <DependentUpon>VouchersInvalido.aspx</DependentUpon>
-
     </Compile>
   </ItemGroup>
   <ItemGroup>

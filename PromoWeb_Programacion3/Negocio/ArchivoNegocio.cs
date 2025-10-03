@@ -14,7 +14,7 @@ namespace negocio
 {
     public class ArchivoNegocio
     {
-        public List<Articulo> Listar()
+        /*public List<Articulo> Listar()
         {
             List<Articulo> lista = new List<Articulo>();
             AccesoDatos datos = new AccesoDatos();
@@ -98,7 +98,7 @@ namespace negocio
             {
                 datos.CerrarConexion();
             }
-        }
+        }*/
 
         public List<Articulo> ListarConSP()
         {
@@ -108,10 +108,8 @@ namespace negocio
             try
             {
 
-                 datos.SetearSP("SP_ObtenerArticulos");
-                ///datos.SetearSP("SP_ObtenerArticulos2222");
 
-
+                datos.SetearSP("SP_ObtenerArticulos");
                 datos.EjecutarLectura();
                 while (datos.Lector.Read())
                 {
@@ -136,6 +134,25 @@ namespace negocio
                         Id = (int)datos.Lector["IdMarca"],
                         Descripcion = (string)datos.Lector["Marca"]
                     };
+
+                    aux.Cliente = new dominio.Cliente
+                    {
+                        Id = datos.Lector["IdCliente"] != DBNull.Value ? (int)datos.Lector["IdCliente"] : 0,
+                        Documento = datos.Lector["Documento"] != DBNull.Value ? (string)datos.Lector["Documento"] : "",
+                        Nombre = datos.Lector["NombreCliente"] != DBNull.Value ? (string)datos.Lector["NombreCliente"] : "",
+                        Apellido = datos.Lector["ApellidoCliente"] != DBNull.Value ? (string)datos.Lector["ApellidoCliente"] : "",
+                        Email = datos.Lector["EmailCliente"] != DBNull.Value ? (string)datos.Lector["EmailCliente"] : "",
+                        Direccion = datos.Lector["DireccionCliente"] != DBNull.Value ? (string)datos.Lector["DireccionCliente"] : "",
+                        Ciudad = datos.Lector["CiudadCliente"] != DBNull.Value ? (string)datos.Lector["CiudadCliente"] : "",
+                        CP = datos.Lector["CPCliente"] != DBNull.Value ? (int)datos.Lector["CPCliente"] : 0
+                    };
+
+                    aux.Voucher = new dominio.Voucher
+                    {
+                        CodigoVoucher = datos.Lector["CodigoVoucher"] != DBNull.Value ? (string)datos.Lector["CodigoVoucher"] : "",
+                        FechaCanje = datos.Lector["FechaCanje"] != DBNull.Value ? (DateTime?)datos.Lector["FechaCanje"] : null
+                    };
+
 
                     lista.Add(aux);
                 }
@@ -218,7 +235,6 @@ namespace negocio
 
             try
             {
-                // Actualizo los campos principales del artículo
                 datos.SetearConsulta(
                     "UPDATE Articulos " +
                     "SET Codigo = @Codigo, " +

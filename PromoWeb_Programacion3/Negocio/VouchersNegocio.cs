@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Negocio
 {
+
     public class VouchersNegocio
     {
         List<Cliente> lista = new List<Cliente>();

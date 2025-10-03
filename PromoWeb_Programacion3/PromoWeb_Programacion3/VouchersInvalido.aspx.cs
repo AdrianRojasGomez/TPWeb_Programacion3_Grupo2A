@@ -16,7 +16,7 @@ namespace PromoWeb_Programacion3
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Inicio.aspx");
+            Response.Redirect("Default.aspx");
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using dominio;
+using negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +13,34 @@ namespace PromoWeb_Programacion3
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
+
+            if (!IsPostBack)
+            {
+                string premioId = Request.QueryString["premioId"];
+
+                if (!string.IsNullOrEmpty(premioId))
+                {
+                    int id = int.Parse(premioId);
+
+                    // Buscar el artículo por ID
+                    ArchivoNegocio negocio = new ArchivoNegocio();
+                    List<Articulo> articulos = negocio.ListarConSP();
+
+                    Articulo seleccionado = articulos.Find(a => a.Id == id);
+
+                    if (seleccionado != null)
+                    {
+                        lblNombrePremio.Text = $"Premio seleccionado: {seleccionado.Nombre}";
+                    }
+                    else
+                    {
+                        lblNombrePremio.Text = "Premio no encontrado.";
+                    }
+                }
+            }
+
+
 
         }
 

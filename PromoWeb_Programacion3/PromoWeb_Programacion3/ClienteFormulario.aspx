@@ -22,6 +22,7 @@
                 <label for="Voucher" class="col-sm-2 col-form-label">Voucher</label>
                 <div class="col-sm-10">
                     <input type="text" readonly class="form-control-plaintext" id="Voucher" value="Codigo0N" />
+                    <asp:Label ID="lblNombrePremio" runat="server" CssClass="form-label text-success" />
                 </div>
             </div>
 

@@ -56,9 +56,7 @@ namespace PromoWeb_Programacion3
 
             if (LblMensaje.Text == "el voucher se puede usar")
             {
-                Response.Redirect("SeleccionPremios.aspx");
-
-
+                Response.Redirect("SeleccionPremio.aspx");
             }
 
 
@@ -83,21 +81,11 @@ namespace PromoWeb_Programacion3
             List<Voucher> listavoucher = new List<Voucher>();
 
 
-
-
-
-
-
             try
             {
 
+                accesoDatos.SetearConsulta("select CodigoVoucher,FechaCanje  " + " from Vouchers  " + "WHERE CodigoVoucher = @CodigoVoucher");
 
-
-
-
-
-                 accesoDatos.SetearConsulta("select CodigoVoucher,FechaCanje  " + " from Vouchers  " + "WHERE CodigoVoucher = @CodigoVoucher");
-                //accesoDatos.SetearSP("SP_ObtenerVoucherPorCodigo");
 
                 accesoDatos.SetearParametros("@CodigoVoucher", voucher.Trim());
                 accesoDatos.EjecutarLectura();

@@ -110,10 +110,6 @@ namespace negocio
 
 
                 datos.SetearSP("SP_ObtenerArticulos");
-
-
-
-
                 datos.EjecutarLectura();
                 while (datos.Lector.Read())
                 {

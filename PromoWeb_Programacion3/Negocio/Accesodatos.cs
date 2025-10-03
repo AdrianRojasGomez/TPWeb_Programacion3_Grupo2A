@@ -26,8 +26,8 @@ namespace negocio
         {
 
 
-            conexion = new SqlConnection("Server=localhost,1433; Database=PROMOS_DB; Integrated Security=False; User ID=sa; Password=Esteban94*;");
 
+            conexion = new SqlConnection("Server=localhost,1433; Database=PROMOS_DB; Integrated Security=False; User ID=sa; Password=Esteban94*;");
 
 
             //matias

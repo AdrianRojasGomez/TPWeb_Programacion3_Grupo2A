@@ -13,20 +13,29 @@ namespace PromoWeb_Programacion3
         protected void Page_Load(object sender, EventArgs e)
         {
             ArchivoNegocio negocio = new ArchivoNegocio();
-            ListaArticulo = negocio.ListarConSP();
+      
+            List<Articulo> lista = negocio.ListarArticulosConImagenes();
 
             if (!IsPostBack)
             {
-                rptArticulos.DataSource = ListaArticulo;
-                rptArticulos.DataBind();
+                try
+                {
+                    rptArticulos.DataSource = lista;
+                    rptArticulos.DataBind();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
+
         }
 
         
         protected void btnConfirmar_Click(object sender, EventArgs e)
         {
             
-            string idArticulo = HiddenArticuloId.Value;
+            string idArticulo = HiddenArticuloId.Value; 
 
             if (!string.IsNullOrEmpty(idArticulo))
             {

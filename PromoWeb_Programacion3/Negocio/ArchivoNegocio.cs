@@ -169,6 +169,90 @@ namespace negocio
                 datos.CerrarConexion();
             }
         }
+
+        public List<Articulo> ListarArticulosConImagenes()
+        {
+            List<Articulo> lista = new List<Articulo>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta(@"
+                    SELECT
+                        A.Id,
+                        A.Codigo,
+                        A.Nombre,
+                        A.Descripcion,
+                        A.Precio,
+                        I.ImagenUrl,
+                        C.Id AS IdCategoria,
+                        C.Descripcion AS Categoria,
+                        M.Id AS IdMarca,
+                        M.Descripcion AS Marca
+                    FROM Articulos A
+                    LEFT JOIN Imagenes I ON I.IdArticulo = A.Id
+                    LEFT JOIN Categorias C ON A.IdCategoria = C.Id
+                    LEFT JOIN Marcas M ON A.IdMarca = M.Id
+                ");
+
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    int idArticulo = (int)datos.Lector["Id"];
+                    Articulo aux;
+
+                    aux = lista.FirstOrDefault(a => a.Id == idArticulo);
+
+                    Imagen nuevaImagen = new Imagen
+                    {
+                        Url = datos.Lector["ImagenUrl"] != DBNull.Value ? (string)datos.Lector["ImagenUrl"] : ""
+                    };
+
+                    if (string.IsNullOrEmpty(nuevaImagen.Url) && aux != null)
+                        continue;
+
+                    if (aux != null)
+                    {
+                        aux.Imagenes.Add(nuevaImagen);
+                    }
+                    else
+                    {
+                        aux = new Articulo();
+                        aux.Id = idArticulo;
+                        aux.Codigo = (string)datos.Lector["Codigo"];
+                        aux.Nombre = (string)datos.Lector["Nombre"];
+                        aux.Descripcion = (string)datos.Lector["Descripcion"];
+                        aux.Precio = (decimal)datos.Lector["Precio"];
+                  
+                        aux.Categoria = new Categoria
+                        {
+                            Id = (int)datos.Lector["IdCategoria"],
+                            Descripcion = (string)datos.Lector["Categoria"]
+                        };
+                        aux.Marca = new Marca
+                        {
+                            Id = (int)datos.Lector["IdMarca"],
+                            Descripcion = (string)datos.Lector["Marca"]
+                        };
+
+                        aux.Imagenes = new List<Imagen> { nuevaImagen };
+                         aux.ImagenUrl = nuevaImagen;
+
+                        lista.Add(aux);
+                    }
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
         //metodo para agregar articulos
         public int Agregar(Articulo articulo)
         {

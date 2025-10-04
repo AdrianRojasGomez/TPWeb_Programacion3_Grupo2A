@@ -13,12 +13,12 @@ namespace PromoWeb_Programacion3
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            string voucherUsado = Session["voucher"] as string ?? string.Empty;
 
             if (!IsPostBack)
             {
                 string premioId = Request.QueryString["premioId"];
-                string voucherUsado = Session["voucher"].ToString();
+
 
                 if (!string.IsNullOrEmpty(premioId))
                 {
@@ -48,7 +48,7 @@ namespace PromoWeb_Programacion3
 
         protected void btnParticipar_Click(object sender, EventArgs e)
         {
-            
+
         }
     }
 }

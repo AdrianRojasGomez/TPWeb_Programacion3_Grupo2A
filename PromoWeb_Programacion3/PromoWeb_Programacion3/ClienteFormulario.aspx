@@ -37,7 +37,7 @@
                     <div class="invalid-feedback">Ingresa solo números.</div>
                 </div>
 
-                <!-- Mensaje de estado (Bootstrap alert) -->
+                <!-- Mensaje de estado -->
                 <div id="docStatus" runat="server" class="alert d-none mt-2 py-2 px-3" role="alert"></div>
             </div>
 

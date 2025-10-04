@@ -1,6 +1,5 @@
 ﻿using dominio;
 using negocio;
-using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,28 +55,43 @@ namespace PromoWeb_Programacion3
             txtDireccion.CssClass = defaultStyle;
         }
 
-        private void MostrarEstadoDocumento(bool encontrado, string dni)
+        private void MostrarEstadoDocumento(bool encontrado, string documento)
         {
 
             string clasesBase = "alert mt-2 py-2 px-3 ";
             if (encontrado)
             {
                 docStatus.Attributes["class"] = clasesBase + "alert-success";
-                docStatus.InnerHtml = $"Cliente encontrado para DNI <strong>{dni}</strong>.";
+                docStatus.InnerHtml = $"Cliente encontrado para DNI <strong>{documento}</strong>.";
             }
             else
             {
                 docStatus.Attributes["class"] = clasesBase + "alert-warning";
-                docStatus.InnerHtml = $"No se encontró cliente con DNI <strong>{dni}</strong>. " +
+                docStatus.InnerHtml = $"No se encontró cliente con DNI <strong>{documento}</strong>. " +
                                       $"Puedes completar los datos para registrarlo.";
             }
         }
 
+        private void AplicarEstadoParticipar(bool habilitar)
+        {
+            string textoDefault = (string)(ViewState["BtnParticiparDefault"] ?? "Participar");
+
+            btnParticipar.Enabled = habilitar;
+            btnParticipar.Text = habilitar ? textoDefault : "No disponible";
+            btnParticipar.CssClass = habilitar ? "btn btn-primary" : "btn btn-secondary disabled";
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
-
             string voucherUsado = Session["voucher"] as string ?? string.Empty;
             lblVoucherUSado.Text = $"Voucher Usado: {voucherUsado}";
+            if (voucherUsado == string.Empty)
+            {
+                btnParticipar.Enabled = false;
+                btnParticipar.Text = "INGRESA EL VOUCHER CORRECTAMENTE";
+                btnParticipar.CssClass = "btn btn-secondary disabled";
+            }
+
+
             if (!IsPostBack)
             {
                 string premioId = Request.QueryString["premioId"];
@@ -113,9 +127,9 @@ namespace PromoWeb_Programacion3
 
         protected void txtDocumento_TextChanged(object sender, EventArgs e)
         {
-            string dni = txtDocumento.Text?.Trim();
+            string documento = txtDocumento.Text?.Trim();
 
-            if (string.IsNullOrEmpty(dni))
+            if (string.IsNullOrEmpty(documento))
             {
                 LimpiarCamposCliente();
                 ClienteEncontrado = false;
@@ -125,7 +139,7 @@ namespace PromoWeb_Programacion3
             }
 
             ClienteNegocio negocio = new ClienteNegocio();
-            Cliente cliente = negocio.BuscarPorDocumento(dni);
+            Cliente cliente = negocio.BuscarPorDocumento(documento);
 
             if (cliente != null)
             {
@@ -145,23 +159,23 @@ namespace PromoWeb_Programacion3
 
                 ClienteEncontrado = true;
                 BloquearCamposCliente(true);
-                MostrarEstadoDocumento(true, dni);
+                MostrarEstadoDocumento(true, documento);
             }
             else
             {
                 LimpiarCamposCliente();
                 ClienteEncontrado = false;
                 BloquearCamposCliente(false);
-                MostrarEstadoDocumento(false, dni);
+                MostrarEstadoDocumento(false, documento);
             }
         }
 
 
-
-
         protected void btnParticipar_Click(object sender, EventArgs e)
         {
-            ClienteNegocio negocio = new ClienteNegocio();
+
+            ClienteNegocio clienteNegocio = new ClienteNegocio();
+            VoucherNegocio voucherNegocio = new VoucherNegocio();
 
             if (!ClienteEncontrado)
             {
@@ -174,8 +188,12 @@ namespace PromoWeb_Programacion3
                 nuevoCliente.Ciudad = txtCiudad.Text;
                 nuevoCliente.CP = int.Parse(txtCP.Text);
 
-                negocio.AgregarCliente(nuevoCliente);
+                clienteNegocio.AgregarCliente(nuevoCliente);
             }
+            string documento = txtDocumento.Text?.Trim();
+            voucherNegocio.ActualizarVoucher(Session["voucher"] as string,
+                clienteNegocio.BuscarPorDocumento(documento).Id,
+                int.Parse(Request.QueryString["premioId"]));
 
         }
     }

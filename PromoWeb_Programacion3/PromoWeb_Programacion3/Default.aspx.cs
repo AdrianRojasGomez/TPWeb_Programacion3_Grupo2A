@@ -22,6 +22,7 @@ namespace PromoWeb_Programacion3
         {
 
             List<Voucher> lista = new List<Voucher>();
+            Voucher voucher = new Voucher();    
 
             if (txtCodigo.Text.ToLower() == "" || txtCodigo.Text.ToLower() == "Ingrese el código aquí")
             {
@@ -56,7 +57,11 @@ namespace PromoWeb_Programacion3
 
             if (LblMensaje.Text == "el voucher se puede usar")
             {
+                
+                Session["HoraActual"] = DateTime.Now;
+                Session["Mivoucher"] = lista[0];
                 Response.Redirect("SeleccionPremio.aspx");
+                return;
             }
 
 
@@ -80,6 +85,7 @@ namespace PromoWeb_Programacion3
 
             List<Voucher> listavoucher = new List<Voucher>();
 
+             
 
             try
             {
@@ -95,6 +101,7 @@ namespace PromoWeb_Programacion3
                 while (accesoDatos.Lector.Read())
                 {
 
+                    
 
                     Voucher aux = new Voucher();
 
@@ -105,8 +112,10 @@ namespace PromoWeb_Programacion3
                     else
                         aux.FechaCanje = null;
 
-
+                    
                     listavoucher.Add(aux);
+
+                    
 
 
                 }

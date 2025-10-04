@@ -11,8 +11,6 @@ namespace Negocio
 {
     public class ClienteNegocio
     {
-
-
         public List<Cliente> clientes()
         {
 
@@ -21,18 +19,11 @@ namespace Negocio
             SqlCommand comando = new SqlCommand();
             SqlDataReader lector;
 
-
-
             try
             {
 
-                // matias
-                //conexion.ConnectionString = "server = .\\SQLEXPRESS02; database = CATALOGO_P3_DB; integrated security =true ;";
-
-
                 comando.CommandType = System.Data.CommandType.Text;
 
-                /// ////matias
                  comando.CommandText = "SELECT " +
                 "    ISNULL(C.ID, 0)        AS ID, " +
                 "    ISNULL(C.Nombre, '')   AS Nombre, " +
@@ -43,8 +34,6 @@ namespace Negocio
                 "    ISNULL(C.cp, '')       AS cp, " +
                 "    ISNULL(C.direccion, '') AS direccion " +
                 "FROM Clientes C";
-
-
 
                 comando.Connection = conexion;
                 conexion.Open();
@@ -82,18 +71,7 @@ namespace Negocio
                 throw ex;
             }
 
-
-
-
-
-
-
-
-
         }
-
-
-
 
    }
 }

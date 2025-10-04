@@ -24,13 +24,14 @@
                         <asp:Label ID="lblNombrePremio" runat="server" CssClass=" text-success" />
                     </div>
                     <div class="col-sm-10">
-                        <asp:Label ID="lblVoucherUSado" runat="server" CssClass="'form-label"/>
+                        <asp:Label ID="lblVoucherUSado" runat="server" CssClass="form-label" />
                     </div>
                 </div>
 
                 <div class="mb-3">
                     <label for="txtDocumento" class="form-label">Documento</label>
-                    <asp:TextBox runat="server" ID="txtDocumento" CssClass="form-control" />
+                    <asp:TextBox runat="server" ID="txtDocumento" CssClass="form-control"
+                        AutoPostBack="true" OnTextChanged="txtDocumento_TextChanged" />
                 </div>
 
                 <div class="mb-3">
@@ -45,12 +46,14 @@
 
                 <div class="mb-3">
                     <label for="txtEmail" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="txtEmail" placeholder="name@example.com" />
+                    <asp:TextBox runat="server" ID="txtEmail" CssClass="form-control" TextMode="Email" />
+
                 </div>
 
                 <div class="mb-3">
                     <label for="txtDireccion" class="form-label">Direccion</label>
-                    <textarea class="form-control" id="txtDireccion" rows="3"></textarea>
+                    <asp:TextBox runat="server" ID="txtDireccion" CssClass="form-control" TextMode="MultiLine" Rows="3" />
+
                 </div>
 
                 <div class="mb-3">

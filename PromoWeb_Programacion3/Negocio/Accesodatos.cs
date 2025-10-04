@@ -28,8 +28,6 @@ namespace negocio
             //conexion = new SqlConnection("server = .\\SQLEXPRESS02; database = PROMOS_DB; integrated security =true ;");
             //AdriR
             conexion = new SqlConnection("Server=localhost,1433; Database=PROMOS_DB; Integrated Security=False; User ID=sa; Password=BaseDeDatos#2;");
-            
-            
 
             comando = new SqlCommand();
 
@@ -37,9 +35,7 @@ namespace negocio
         //metodo para setear consulta
         public void SetearConsulta(string consulta)
         {
-
             comando.CommandType = System.Data.CommandType.Text;
-
             comando.CommandText = consulta;
         }
 

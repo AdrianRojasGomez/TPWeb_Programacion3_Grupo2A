@@ -118,13 +118,14 @@ namespace PromoWeb_Programacion3
             if (string.IsNullOrEmpty(dni))
             {
                 LimpiarCamposCliente();
+                ClienteEncontrado = false;
                 docStatus.Attributes["class"] = "alert d-none mt-2 py-2 px-3";
                 docStatus.InnerHtml = string.Empty;
                 return;
             }
 
-            var negocio = new ClienteNegocio();
-            var cliente = negocio.BuscarPorDocumento(dni);
+            ClienteNegocio negocio = new ClienteNegocio();
+            Cliente cliente = negocio.BuscarPorDocumento(dni);
 
             if (cliente != null)
             {
@@ -160,6 +161,21 @@ namespace PromoWeb_Programacion3
 
         protected void btnParticipar_Click(object sender, EventArgs e)
         {
+            ClienteNegocio negocio = new ClienteNegocio();
+
+            if (!ClienteEncontrado)
+            {
+                Cliente nuevoCliente = new Cliente();
+                nuevoCliente.Documento = txtDocumento.Text;
+                nuevoCliente.Nombre = txtNombre.Text;
+                nuevoCliente.Apellido = txtApellido.Text;
+                nuevoCliente.Email = txtEmail.Text;
+                nuevoCliente.Direccion = txtDireccion.Text;
+                nuevoCliente.Ciudad = txtCiudad.Text;
+                nuevoCliente.CP = int.Parse(txtCP.Text);
+
+                negocio.AgregarCliente(nuevoCliente);
+            }
 
         }
     }

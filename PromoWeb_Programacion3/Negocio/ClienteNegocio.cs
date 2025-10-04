@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Negocio
 {
@@ -80,21 +81,22 @@ namespace Negocio
             if (string.IsNullOrWhiteSpace(documento))
                 return null;
 
-            var datos = new AccesoDatos();
+            AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.SetearConsulta(@" SELECT TOP (1)
-                    Id,
-                    Documento,
-                    Nombre,
-                    Apellido,
-                    Email,
-                    Direccion,
-                    Ciudad,
-                    CP
-                FROM Clientes
-                WHERE Documento = @doc;");
+                datos.SetearConsulta(@"
+            SELECT TOP (1)
+                Id,
+                Documento,
+                Nombre,
+                Apellido,
+                Email,
+                Direccion,
+                Ciudad,
+                CP
+            FROM Clientes
+            WHERE Documento = @doc;");
 
                 datos.SetearParametros("@doc", documento.Trim());
                 datos.EjecutarLectura();
@@ -102,25 +104,56 @@ namespace Negocio
                 if (!datos.Lector.Read())
                     return null;
 
-                var r = datos.Lector;
+                var reader = datos.Lector;
 
-                int Ord(string name) => r.GetOrdinal(name);
-                string S(string name) => r.IsDBNull(Ord(name)) ? string.Empty : r[name].ToString();
+               
+                int GetColumnIndex(string name) => reader.GetOrdinal(name);
+                string GetStringOrEmpty(string name) => reader.IsDBNull(GetColumnIndex(name)) ? string.Empty : reader[name].ToString();
 
-                int cp = r.IsDBNull(Ord("CP")) ? 0 : r.GetInt32(Ord("CP"));
+                int cp = reader.IsDBNull(GetColumnIndex("CP")) ? 0 : reader.GetInt32(GetColumnIndex("CP"));
 
                 return new Cliente
                 {
-                    Id = r.IsDBNull(Ord("Id")) ? 0 : r.GetInt32(Ord("Id")),
-                    Documento = S("Documento"),
-                    Nombre = S("Nombre"),
-                    Apellido = S("Apellido"),
-                    Email = S("Email"),
-                    Direccion = S("Direccion"),
-                    Ciudad = S("Ciudad"),
+                    Id = reader.IsDBNull(GetColumnIndex("Id")) ? 0 : reader.GetInt32(GetColumnIndex("Id")),
+                    Documento = GetStringOrEmpty("Documento"),
+                    Nombre = GetStringOrEmpty("Nombre"),
+                    Apellido = GetStringOrEmpty("Apellido"),
+                    Email = GetStringOrEmpty("Email"),
+                    Direccion = GetStringOrEmpty("Direccion"),
+                    Ciudad = GetStringOrEmpty("Ciudad"),
                     CP = cp,
                     Voucher = null
                 };
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
+        public void AgregarCliente(Cliente cliente)
+        {
+
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta(
+                        "INSERT INTO dbo.Clientes(Documento, Nombre, Apellido, Email, Direccion, Ciudad, CP)" +
+                        "VALUES(@Documento, @Nombre, @Apellido, @Email, @Direccion, @Ciudad, @CP);");
+
+                datos.SetearParametros("@Documento", cliente.Documento);
+                datos.SetearParametros("@Nombre", cliente.Nombre);
+                datos.SetearParametros("@Apellido", cliente.Apellido);
+                datos.SetearParametros("@Email", cliente.Email);
+                datos.SetearParametros("@Direccion", cliente.Direccion);
+                datos.SetearParametros("@Ciudad", cliente.Ciudad);
+                datos.SetearParametros("@CP", cliente.CP);
+
+                datos.EjecutarAccion();
+            }
+            catch (Exception)
+            {
+                throw;
             }
             finally
             {

@@ -18,6 +18,7 @@ namespace PromoWeb_Programacion3
             if (!IsPostBack)
             {
                 string premioId = Request.QueryString["premioId"];
+                string voucherUsado = Session["voucher"].ToString();
 
                 if (!string.IsNullOrEmpty(premioId))
                 {
@@ -31,6 +32,7 @@ namespace PromoWeb_Programacion3
 
                     if (seleccionado != null)
                     {
+                        lblVoucherUSado.Text = $"Voucher Usado: {voucherUsado}";
                         lblNombrePremio.Text = $"Premio seleccionado: {seleccionado.Nombre}";
                     }
                     else

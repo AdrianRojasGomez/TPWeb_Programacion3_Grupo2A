@@ -56,6 +56,8 @@ namespace PromoWeb_Programacion3
 
             if (LblMensaje.Text == "el voucher se puede usar")
             {
+                Session.Add("voucher", txtCodigo.Text);
+                string nombrevoucher = Session["voucher"].ToString();
                 Response.Redirect("SeleccionPremio.aspx");
             }
 

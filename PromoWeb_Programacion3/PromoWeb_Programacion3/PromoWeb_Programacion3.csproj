@@ -68,6 +68,7 @@
     <Content Include="DniCliente.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Inicio.aspx" />
+    <Content Include="Scripts\bootstrap-validation.js" />
     <Content Include="SeleccionPremio.aspx" />
     <Content Include="VouchersInvalido.aspx" />
     <Content Include="Web.config" />

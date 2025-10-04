@@ -56,8 +56,33 @@ namespace PromoWeb_Programacion3
             txtDireccion.CssClass = defaultStyle;
         }
 
+        private void MostrarEstadoDocumento(bool encontrado, string dni)
+        {
+            if (string.IsNullOrWhiteSpace(dni))
+            {
+                // Ocultar el mensaje si no hay DNI
+                docStatus.Attributes["class"] = "alert d-none mt-2 py-2 px-3";
+                docStatus.InnerHtml = string.Empty;
+                return;
+            }
+
+            string clasesBase = "alert mt-2 py-2 px-3 ";
+            if (encontrado)
+            {
+                docStatus.Attributes["class"] = clasesBase + "alert-success";
+                docStatus.InnerHtml = $"Cliente encontrado para DNI <strong>{dni}</strong>.";
+            }
+            else
+            {
+                docStatus.Attributes["class"] = clasesBase + "alert-warning";
+                docStatus.InnerHtml = $"No se encontró cliente con DNI <strong>{dni}</strong>. " +
+                                      $"Puedes completar los datos para registrarlo.";
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
+
             string voucherUsado = Session["voucher"] as string ?? string.Empty;
             lblVoucherUSado.Text = $"Voucher Usado: {voucherUsado}";
             if (!IsPostBack)
@@ -98,7 +123,10 @@ namespace PromoWeb_Programacion3
             string dni = txtDocumento.Text?.Trim();
 
             if (string.IsNullOrEmpty(dni))
+            {
+                LimpiarCamposCliente();
                 return;
+            }
 
             var negocio = new ClienteNegocio();
             var cliente = negocio.BuscarPorDocumento(dni);
@@ -121,12 +149,14 @@ namespace PromoWeb_Programacion3
 
                 ClienteEncontrado = true;
                 BloquearCamposCliente(true);
+                MostrarEstadoDocumento(true, dni);
             }
             else
             {
                 LimpiarCamposCliente();
                 ClienteEncontrado = false;
                 BloquearCamposCliente(false);
+                MostrarEstadoDocumento(false, dni);
             }
         }
 

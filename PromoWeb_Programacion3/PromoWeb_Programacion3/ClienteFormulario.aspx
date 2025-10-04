@@ -10,7 +10,7 @@
 
         <div class="header">
             <h1><i class="fas fa-gift"></i>Introduce tus datos!</h1>
-            <p class="mb-0">es obligarotio completar los datos para participar</p>
+            <p class="mb-0">Es obligatorio completar los datos para participar</p>
 
         </div>
 
@@ -30,53 +30,53 @@
 
                 <div class="mb-3">
                     <label for="txtDocumento" class="form-label">Documento</label>
-                    <asp:TextBox runat="server" ID="txtDocumento" CssClass="form-control"
-                        AutoPostBack="true" OnTextChanged="txtDocumento_TextChanged" />
-                </div>
+                <asp:TextBox runat="server" ID="txtDocumento" CssClass="form-control"
+                    AutoPostBack="true" OnTextChanged="txtDocumento_TextChanged" />
+            </div>
 
-                <div class="mb-3">
-                    <label for="txtNombre" class="form-label">Nombre</label>
-                    <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control" />
-                </div>
+            <div class="mb-3">
+                <label for="txtNombre" class="form-label">Nombre</label>
+                <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control" />
+            </div>
 
-                <div class="mb-3">
-                    <label for="txtApellido" class="form-label">Apellido</label>
-                    <asp:TextBox runat="server" ID="txtApellido" CssClass="form-control" />
-                </div>
+            <div class="mb-3">
+                <label for="txtApellido" class="form-label">Apellido</label>
+                <asp:TextBox runat="server" ID="txtApellido" CssClass="form-control" />
+            </div>
 
-                <div class="mb-3">
-                    <label for="txtEmail" class="form-label">Email address</label>
-                    <asp:TextBox runat="server" ID="txtEmail" CssClass="form-control" TextMode="Email" />
+            <div class="mb-3">
+                <label for="txtEmail" class="form-label">Email address</label>
+                <asp:TextBox runat="server" ID="txtEmail" CssClass="form-control" TextMode="Email" />
 
-                </div>
+            </div>
 
-                <div class="mb-3">
-                    <label for="txtDireccion" class="form-label">Direccion</label>
-                    <asp:TextBox runat="server" ID="txtDireccion" CssClass="form-control" TextMode="MultiLine" Rows="3" />
+            <div class="mb-3">
+                <label for="txtDireccion" class="form-label">Direccion</label>
+                <asp:TextBox runat="server" ID="txtDireccion" CssClass="form-control" TextMode="MultiLine" Rows="3" />
 
-                </div>
+            </div>
 
-                <div class="mb-3">
-                    <label for="txtCiudad" class="form-label">Ciudad</label>
-                    <asp:TextBox runat="server" ID="txtCiudad" CssClass="form-control" />
-                </div>
+            <div class="mb-3">
+                <label for="txtCiudad" class="form-label">Ciudad</label>
+                <asp:TextBox runat="server" ID="txtCiudad" CssClass="form-control" />
+            </div>
 
-                <div class="mb-3">
-                    <label for="txtCP" class="form-label">Codigo Postal</label>
-                    <asp:TextBox runat="server" ID="txtCP" CssClass="form-control" />
-                </div>
+            <div class="mb-3">
+                <label for="txtCP" class="form-label">Codigo Postal</label>
+                <asp:TextBox runat="server" ID="txtCP" CssClass="form-control" />
+            </div>
 
-                <div class="form-check mb-3">
-                    <input class="form-check-input" type="checkbox" value="" id="checkDefault" />
-                    <label class="form-check-label" for="checkDefault">
-                        Acepto los términos y condiciones.
-                    </label>
-                </div>
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" value="" id="checkDefault" />
+                <label class="form-check-label" for="checkDefault">
+                    Acepto los términos y condiciones.
+                </label>
+            </div>
 
-                <div class="col-12">
-                    <asp:Button Text="Participar" ID="btnParticipar" CssClass="btn btn-primary" OnClick="btnParticipar_Click" runat="server" />
-                </div>
+            <div class="col-12">
+                <asp:Button Text="Participar" ID="btnParticipar" CssClass="btn btn-primary" OnClick="btnParticipar_Click" runat="server" />
             </div>
         </div>
+    </div>
     </div>
 </asp:Content>

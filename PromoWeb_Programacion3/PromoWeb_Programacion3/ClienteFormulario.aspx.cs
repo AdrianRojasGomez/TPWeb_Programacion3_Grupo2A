@@ -12,10 +12,54 @@ namespace PromoWeb_Programacion3
 {
     public partial class WebForm2 : System.Web.UI.Page
     {
+        protected bool ClienteEncontrado
+        {
+            get
+            {
+                if (ViewState["ClienteEncontrado"] == null)
+                    return false;
+                return (bool)ViewState["ClienteEncontrado"];
+            }
+            set
+            {
+                ViewState["ClienteEncontrado"] = value;
+            }
+        }
+
+        private void BloquearCamposCliente(bool bloquear)
+        {
+            
+            txtDocumento.ReadOnly = false;
+
+            txtNombre.ReadOnly = bloquear;
+            txtApellido.ReadOnly = bloquear;
+            txtEmail.ReadOnly = bloquear;
+            txtCiudad.ReadOnly = bloquear;
+            txtCP.ReadOnly = bloquear;
+            txtDireccion.ReadOnly = bloquear;
+        }
+
+        private void LimpiarCamposCliente()
+        {
+            string defaultStyle = "form-control";
+            txtNombre.Text = "";
+            txtNombre.CssClass = defaultStyle;
+            txtApellido.Text = "";
+            txtApellido.CssClass = defaultStyle;
+            txtEmail.Text = "";
+            txtEmail.CssClass = defaultStyle;
+            txtCiudad.Text = "";
+            txtCiudad.CssClass = defaultStyle;
+            txtCP.Text = "";
+            txtCP.CssClass = defaultStyle;
+            txtDireccion.Text = "";
+            txtDireccion.CssClass = defaultStyle;
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             string voucherUsado = Session["voucher"] as string ?? string.Empty;
-
+            lblVoucherUSado.Text = $"Voucher Usado: {voucherUsado}";
             if (!IsPostBack)
             {
                 string premioId = Request.QueryString["premioId"];
@@ -33,15 +77,20 @@ namespace PromoWeb_Programacion3
 
                     if (seleccionado != null)
                     {
-                        lblVoucherUSado.Text = $"Voucher Usado: {voucherUsado}";
+                        
                         lblNombrePremio.Text = $"Premio seleccionado: {seleccionado.Nombre}";
                     }
                     else
                     {
                         lblNombrePremio.Text = "Premio no encontrado.";
                     }
+
                 }
+
+
             }
+
+
         }
 
         protected void txtDocumento_TextChanged(object sender, EventArgs e)
@@ -56,19 +105,28 @@ namespace PromoWeb_Programacion3
 
             if (cliente != null)
             {
+                string newStyle = (txtNombre.CssClass + " bg-light text-muted").Trim();
                 txtNombre.Text = cliente.Nombre;
+                txtNombre.CssClass = newStyle;
                 txtApellido.Text = cliente.Apellido;
+                txtApellido.CssClass = newStyle;
                 txtEmail.Text = cliente.Email;
+                txtEmail.CssClass = newStyle;
                 txtCiudad.Text = cliente.Ciudad;
+                txtCiudad.CssClass = newStyle;
                 txtCP.Text = cliente.CP.ToString();
+                txtCP.CssClass = newStyle;
                 txtDireccion.Text = cliente.Direccion;
-                // Si quieres, puedes deshabilitar campos o mostrar un mensaje de "Cliente encontrado".
+                txtDireccion.CssClass = newStyle;
+
+                ClienteEncontrado = true;
+                BloquearCamposCliente(true);
             }
             else
             {
-                // Limpia o deja lo que el usuario haya escrito; a tu gusto:
-                txtNombre.Text = txtApellido.Text = txtEmail.Text = txtCiudad.Text = txtCP.Text = txtDireccion.Text = string.Empty;
-                // También podrías mostrar un Label con "DNI no encontrado".
+                LimpiarCamposCliente();
+                ClienteEncontrado = false;
+                BloquearCamposCliente(false);
             }
         }
 

@@ -7,10 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Negocio
+namespace negocio
 {
 
-    public class VouchersNegocio
+    public class VoucherNegocio
     {
         List<Cliente> lista = new List<Cliente>();
         SqlConnection conexion = new SqlConnection();
@@ -56,15 +56,18 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.SetearConsulta(
-                    "INSERT INTO dbo.Vouchers(CodigoVoucher,IdCliente,FechaCanje,IdArticulo)" +
-                    "VALUES (@CodigoVoucher,@IdCliente,@FechaCanje,@IdArticulo)"
-                    );
+                datos.SetearConsulta(@"
+                    UPDATE dbo.Vouchers
+                    SET IdCliente  = @IdCliente,
+                        FechaCanje = @FechaCanje,
+                        IdArticulo = @IdArticulo
+                    WHERE CodigoVoucher = @CodigoVoucher;
+                ");
 
-                datos.SetearParametros("CodigoVoucher", codigoVoucher);
-                datos.SetearParametros("IdCliente", IdCliente);
-                datos.SetearParametros("FechaCanje", DateTime.Today);
-                datos.SetearParametros("IdArticulo", IdArticulo);
+                datos.SetearParametros("@CodigoVoucher", codigoVoucher);
+                datos.SetearParametros("@IdCliente", IdCliente);
+                datos.SetearParametros("@FechaCanje", DateTime.Today);
+                datos.SetearParametros("@IdArticulo", IdArticulo);
 
                 datos.EjecutarAccion();
             }

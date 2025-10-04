@@ -33,7 +33,7 @@ namespace Negocio
                     Voucher aux = new Voucher();
                     aux.Id = (int)datosVerif.Lector["Id"];
                     aux.CodigoVouchers = (string)datosVerif.Lector["CodigoVouchers"];
-                    
+
                     aux.FechaCanje = (DateTime)datosVerif.Lector["FechaCanje"];
                 }
                 return lista;
@@ -51,7 +51,33 @@ namespace Negocio
 
         }
 
+        public void ActualizarVoucher(string codigoVoucher, int IdCliente, int IdArticulo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta(
+                    "INSERT INTO dbo.Vouchers(CodigoVoucher,IdCliente,FechaCanje,IdArticulo)" +
+                    "VALUES (@CodigoVoucher,@IdCliente,@FechaCanje,@IdArticulo)"
+                    );
 
+                datos.SetearParametros("CodigoVoucher", codigoVoucher);
+                datos.SetearParametros("IdCliente", IdCliente);
+                datos.SetearParametros("FechaCanje", DateTime.Today);
+                datos.SetearParametros("IdArticulo", IdArticulo);
+
+                datos.EjecutarAccion();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
 
     }
 }

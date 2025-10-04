@@ -138,8 +138,9 @@ namespace Negocio
             try
             {
                 datos.SetearConsulta(
-                        "INSERT INTO dbo.Clientes(Documento, Nombre, Apellido, Email, Direccion, Ciudad, CP)" +
-                        "VALUES(@Documento, @Nombre, @Apellido, @Email, @Direccion, @Ciudad, @CP);");
+                    "INSERT INTO dbo.Clientes(Documento, Nombre, Apellido, Email, Direccion, Ciudad, CP)" +
+                    "VALUES(@Documento, @Nombre, @Apellido, @Email, @Direccion, @Ciudad, @CP);"
+                    );
 
                 datos.SetearParametros("@Documento", cliente.Documento);
                 datos.SetearParametros("@Nombre", cliente.Nombre);

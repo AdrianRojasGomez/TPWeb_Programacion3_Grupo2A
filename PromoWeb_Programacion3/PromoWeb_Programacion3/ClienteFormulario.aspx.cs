@@ -1,5 +1,6 @@
 ﻿using dominio;
 using negocio;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,10 +42,38 @@ namespace PromoWeb_Programacion3
                     }
                 }
             }
-
-
-
         }
+
+        protected void txtDocumento_TextChanged(object sender, EventArgs e)
+        {
+            string dni = txtDocumento.Text?.Trim();
+
+            if (string.IsNullOrEmpty(dni))
+                return;
+
+            var negocio = new ClienteNegocio();
+            var cliente = negocio.BuscarPorDocumento(dni);
+
+            if (cliente != null)
+            {
+                txtNombre.Text = cliente.Nombre;
+                txtApellido.Text = cliente.Apellido;
+                txtEmail.Text = cliente.Email;
+                txtCiudad.Text = cliente.Ciudad;
+                txtCP.Text = cliente.CP.ToString();
+                txtDireccion.Text = cliente.Direccion;
+                // Si quieres, puedes deshabilitar campos o mostrar un mensaje de "Cliente encontrado".
+            }
+            else
+            {
+                // Limpia o deja lo que el usuario haya escrito; a tu gusto:
+                txtNombre.Text = txtApellido.Text = txtEmail.Text = txtCiudad.Text = txtCP.Text = txtDireccion.Text = string.Empty;
+                // También podrías mostrar un Label con "DNI no encontrado".
+            }
+        }
+
+
+
 
         protected void btnParticipar_Click(object sender, EventArgs e)
         {

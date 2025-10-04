@@ -1,12 +1,15 @@
-﻿using System;
+﻿using dominio;
+using negocio;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net.Sockets;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
-using dominio;
-using negocio;
+using System.Xml.Linq;
 
 
 namespace negocio
@@ -109,7 +112,30 @@ namespace negocio
             {
 
 
-                datos.SetearSP("SP_ObtenerArticulos");
+                datos.SetearConsulta(
+                        "SELECT A.Codigo, A.Nombre, A.Descripcion, A.Precio, A.Id, " +
+                        "ISNULL(I1.ImagenUrl, '') AS ImagenUrl, " +
+                        "ISNULL(C.Id, 0) AS IdCategoria, ISNULL(C.Descripcion, '') AS Categoria, " +
+                        "ISNULL(M.Id, 0) AS IdMarca, ISNULL(M.Descripcion, '') AS Marca, " +
+                        "ISNULL(CL.Id, 0) AS IdCliente, ISNULL(CL.Documento, '') AS Documento, " +
+                        "ISNULL(CL.Nombre, '') AS NombreCliente, ISNULL(CL.Apellido, '') AS ApellidoCliente, " +
+                        "ISNULL(CL.Email, '') AS EmailCliente, ISNULL(CL.Direccion, '') AS DireccionCliente, " +
+                        "ISNULL(CL.Ciudad, '') AS CiudadCliente, ISNULL(CL.CP, 0) AS CPCliente, " +
+                        "ISNULL(V.CodigoVoucher, '') AS CodigoVoucher, ISNULL(V.FechaCanje, NULL) AS FechaCanje " +
+                        "FROM Articulos A " +
+                        "OUTER APPLY ( " +
+                        "    SELECT TOP 1 ImagenUrl " +
+                        "    FROM Imagenes I " +
+                        "    WHERE I.IdArticulo = A.Id " +
+                        "    ORDER BY I.Id " +
+                        ") I1 " +
+                        "LEFT JOIN Categorias C ON A.IdCategoria = C.Id " +
+                        "LEFT JOIN Marcas M ON A.IdMarca = M.Id " +
+                        "LEFT JOIN Vouchers V ON A.Id = V.IdArticulo " +
+                        "LEFT JOIN Clientes CL ON V.IdCliente = CL.Id"
+                    );
+
+
                 datos.EjecutarLectura();
                 while (datos.Lector.Read())
                 {

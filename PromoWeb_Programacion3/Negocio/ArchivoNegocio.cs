@@ -17,100 +17,14 @@ namespace negocio
 {
     public class ArchivoNegocio
     {
-        /*public List<Articulo> Listar()
+
+        public List<Articulo> Listar()
         {
             List<Articulo> lista = new List<Articulo>();
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.SetearConsulta(
-                    "SELECT A.Codigo, A.Nombre, A.Descripcion, A.Precio, A.Id, " +
-                    "ISNULL(I1.ImagenUrl, '') AS ImagenUrl, " +
-                    "ISNULL(C.Id, 0) AS IdCategoria, ISNULL(C.Descripcion, '') AS Categoria, " +
-                    "ISNULL(M.Id, 0) AS IdMarca, ISNULL(M.Descripcion, '') AS Marca, " +
-                    "ISNULL(CL.Id, 0) AS Id, ISNULL(CL.Documento, '') AS Documento, " +
-                    "ISNULL(CL.Nombre, '') AS NombreCliente, ISNULL(CL.Apellido, '') AS ApellidoCliente, " +
-                    "ISNULL(CL.Email, '') AS EmailCliente, ISNULL(CL.Direccion, '') AS DireccionCliente, " +
-                    "ISNULL(CL.Ciudad, '') AS CiudadCliente, ISNULL(CL.CP, 0) AS CPCliente, " +
-                    "ISNULL(V.CodigoVoucher, '') AS CodigoVoucher, ISNULL(V.FechaCanje, NULL) AS FechaCanje " +
-                    "FROM Articulos A " +
-                    "OUTER APPLY ( " +
-                    "    SELECT TOP 1 ImagenUrl " +
-                    "    FROM Imagenes I " +
-                    "    WHERE I.IdArticulo = A.Id " +
-                    "    ORDER BY I.Id " +
-                    ") I1 " +
-                    "LEFT JOIN Categorias C ON A.IdCategoria = C.Id " +
-                    "LEFT JOIN Marcas M ON A.IdMarca = M.Id " +
-                    "LEFT JOIN Vouchers V ON A.Id = V.IdArticulo " +
-                    "LEFT JOIN Clientes CL ON V.Id = CL.Id"
-                );
-
-                datos.EjecutarLectura();
-                while (datos.Lector.Read())
-                {
-                    Articulo aux = new Articulo();
-                    aux.Id = (int)datos.Lector["Id"];
-                    aux.Codigo = (string)datos.Lector["Codigo"];
-                    aux.Nombre = (string)datos.Lector["Nombre"];
-                    aux.Descripcion = (string)datos.Lector["Descripcion"];
-                    aux.Precio = (decimal)datos.Lector["Precio"];
-                    aux.ImagenUrl = new dominio.Imagen { ImagenUrl = (string)datos.Lector["ImagenUrl"] };
-
-                    aux.Categoria = new dominio.Categoria
-                    {
-                        Id = (int)datos.Lector["IdCategoria"],
-                        Descripcion = (string)datos.Lector["Categoria"]
-                    };
-
-                    aux.Marca = new dominio.Marca
-                    {
-                        Id = (int)datos.Lector["IdMarca"],
-                        Descripcion = (string)datos.Lector["Marca"]
-                    };
-                    
-                    aux.Cliente = new dominio.Cliente
-                    {
-                        Id = (int)datos.Lector["Id"],
-                        Documento = (string)datos.Lector["Documento"],
-                        Nombre = (string)datos.Lector["NombreCliente"],
-                        Apellido = (string)datos.Lector["ApellidoCliente"],
-                        Email = (string)datos.Lector["EmailCliente"],
-                        Direccion = (string)datos.Lector["DireccionCliente"],
-                        Ciudad = (string)datos.Lector["CiudadCliente"],
-                        CP = (int)datos.Lector["CPCliente"]
-                    };
-
-                    aux.Voucher = new dominio.Voucher
-                    {
-                        CodigoVoucher = (string)datos.Lector["CodigoVoucher"],
-                        FechaCanje = (DateTime)(datos.Lector["FechaCanje"] != DBNull.Value ? (DateTime)datos.Lector["FechaCanje"] : (DateTime?)null)
-                    };
-
-                    lista.Add(aux);
-                }
-
-                return lista;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                datos.CerrarConexion();
-            }
-        }*/
-
-        public List<Articulo> ListarConSP()
-        {
-            List<Articulo> lista = new List<Articulo>();
-            AccesoDatos datos = new AccesoDatos();
-
-            try
-            {
-
 
                 datos.SetearConsulta(
                         "SELECT A.Codigo, A.Nombre, A.Descripcion, A.Precio, A.Id, " +

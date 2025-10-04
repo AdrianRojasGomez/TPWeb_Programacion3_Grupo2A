@@ -58,13 +58,6 @@ namespace PromoWeb_Programacion3
 
         private void MostrarEstadoDocumento(bool encontrado, string dni)
         {
-            if (string.IsNullOrWhiteSpace(dni))
-            {
-                // Ocultar el mensaje si no hay DNI
-                docStatus.Attributes["class"] = "alert d-none mt-2 py-2 px-3";
-                docStatus.InnerHtml = string.Empty;
-                return;
-            }
 
             string clasesBase = "alert mt-2 py-2 px-3 ";
             if (encontrado)
@@ -125,6 +118,8 @@ namespace PromoWeb_Programacion3
             if (string.IsNullOrEmpty(dni))
             {
                 LimpiarCamposCliente();
+                docStatus.Attributes["class"] = "alert d-none mt-2 py-2 px-3";
+                docStatus.InnerHtml = string.Empty;
                 return;
             }
 

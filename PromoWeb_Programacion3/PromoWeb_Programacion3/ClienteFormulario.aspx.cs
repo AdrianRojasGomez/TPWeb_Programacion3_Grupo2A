@@ -71,7 +71,7 @@ namespace PromoWeb_Programacion3
 
                     // Buscar el artículo por ID
                     ArchivoNegocio negocio = new ArchivoNegocio();
-                    List<Articulo> articulos = negocio.ListarConSP();
+                    List<Articulo> articulos = negocio.Listar();
 
                     Articulo seleccionado = articulos.Find(a => a.Id == id);
 

@@ -7,10 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Negocio
+namespace negocio
 {
 
-    public class VouchersNegocio
+    public class VoucherNegocio
     {
         List<Cliente> lista = new List<Cliente>();
         SqlConnection conexion = new SqlConnection();
@@ -33,7 +33,7 @@ namespace Negocio
                     Voucher aux = new Voucher();
                     aux.Id = (int)datosVerif.Lector["Id"];
                     aux.CodigoVouchers = (string)datosVerif.Lector["CodigoVouchers"];
-                    
+
                     aux.FechaCanje = (DateTime)datosVerif.Lector["FechaCanje"];
                 }
                 return lista;
@@ -51,7 +51,36 @@ namespace Negocio
 
         }
 
+        public void ActualizarVoucher(string codigoVoucher, int IdCliente, int IdArticulo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta(@"
+                    UPDATE dbo.Vouchers
+                    SET IdCliente  = @IdCliente,
+                        FechaCanje = @FechaCanje,
+                        IdArticulo = @IdArticulo
+                    WHERE CodigoVoucher = @CodigoVoucher;
+                ");
 
+                datos.SetearParametros("@CodigoVoucher", codigoVoucher);
+                datos.SetearParametros("@IdCliente", IdCliente);
+                datos.SetearParametros("@FechaCanje", DateTime.Today);
+                datos.SetearParametros("@IdArticulo", IdArticulo);
+
+                datos.EjecutarAccion();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
 
     }
 }

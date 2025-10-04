@@ -14,7 +14,8 @@ namespace PromoWeb_Programacion3
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack) { txtCodigo.Text = "Ingrese el código aquí"; }
+            
+            
 
         }
 
@@ -23,16 +24,17 @@ namespace PromoWeb_Programacion3
 
             List<Voucher> lista = new List<Voucher>();
             Voucher voucher = new Voucher();    
+            ArchivoNegocio archivoNegocio = new ArchivoNegocio();
 
-            if (txtCodigo.Text.ToLower() == "" || txtCodigo.Text.ToLower() == "Ingrese el código aquí")
+            if (txtCodigo.Text.ToLower() == "" )
             {
-                LblMensaje.Text = "ponga un codigo por favor";
+                LblMensaje.Text = "Ponga un codigo por favor";
 
                 return;
             }
             try
             {
-                lista = listavoucher(txtCodigo.Text);
+                lista = archivoNegocio.listavoucher(txtCodigo.Text.ToLower());
             }
             catch (Exception ex)
             {
@@ -53,16 +55,18 @@ namespace PromoWeb_Programacion3
                 Response.Redirect("VouchersInvalido.aspx");
             }
             else
-            { LblMensaje.Text = "el voucher se puede usar"; }
-
-            if (LblMensaje.Text == "el voucher se puede usar")
             {
-                
                 Session["HoraActual"] = DateTime.Now;
-                Session["Mivoucher"] = lista[0];
+
+
+                Session.Add("voucher", txtCodigo.Text.ToLower());
+                string NombreVoucher = Session["voucher"].ToString();
+
                 Response.Redirect("SeleccionPremio.aspx");
                 return;
             }
+
+        
 
 
         }
@@ -78,63 +82,5 @@ namespace PromoWeb_Programacion3
         }
 
 
-        public List<Voucher> listavoucher(string voucher)
-        {
-
-            AccesoDatos accesoDatos = new AccesoDatos();
-
-            List<Voucher> listavoucher = new List<Voucher>();
-
-             
-
-            try
-            {
-
-                accesoDatos.SetearConsulta("select CodigoVoucher,FechaCanje  " + " from Vouchers  " + "WHERE CodigoVoucher = @CodigoVoucher");
-
-
-                accesoDatos.SetearParametros("@CodigoVoucher", voucher.Trim());
-                accesoDatos.EjecutarLectura();
-
-
-
-                while (accesoDatos.Lector.Read())
-                {
-
-                    
-
-                    Voucher aux = new Voucher();
-
-                    aux.CodigoVouchers = (string)accesoDatos.Lector["CodigoVoucher"];
-
-                    if (accesoDatos.Lector["FechaCanje"] != DBNull.Value)
-                        aux.FechaCanje = (DateTime)accesoDatos.Lector["FechaCanje"];
-                    else
-                        aux.FechaCanje = null;
-
-                    
-                    listavoucher.Add(aux);
-
-                    
-
-
-                }
-                return listavoucher;
-
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-
-            finally
-            {
-
-                accesoDatos.CerrarConexion();
-            }
-
-
-        }
     }
 }

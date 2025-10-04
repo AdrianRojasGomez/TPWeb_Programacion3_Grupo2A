@@ -67,7 +67,7 @@
     <Content Include="Default.aspx" />
     <Content Include="DniCliente.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="Inicio.aspx" />
+    <Content Include="Scripts\bootstrap-validation.js" />
     <Content Include="SeleccionPremio.aspx" />
     <Content Include="VouchersInvalido.aspx" />
     <Content Include="Web.config" />
@@ -91,13 +91,6 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Inicio.aspx.cs">
-      <DependentUpon>Inicio.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Inicio.aspx.designer.cs">
-      <DependentUpon>Inicio.aspx</DependentUpon>
     </Compile>
     <Compile Include="MiMaster.Master.cs">
       <DependentUpon>MiMaster.Master</DependentUpon>

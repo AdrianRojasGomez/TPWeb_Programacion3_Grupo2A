@@ -24,12 +24,10 @@
         <div class="d-flex align-items-center mb-3">
 
             <asp:TextBox ID="txtCodigo" runat="server"
-                OnTextChanged="txtCodigo_TextChanged"
                 CssClass="form-control me-3 flex-grow-1"
-                onfocus="if(this.value==='Ingrese el código aquí'){ this.value=''; }"
-                onblur="if(this.value===''){ this.value='Ingrese el código aqui'; }" />
+                placeholder="Ingrese el código aquí" />
 
-            <asp:Button ID="BtnConfigVouchers"          CssClass="btn btn-primary flex-shrink-0"  runat="server" Text="Confirmar Voucher" OnClick="BtnConfigVouchers_Click" />
+            <asp:Button ID="BtnConfigVouchers" CssClass="btn btn-primary flex-shrink-0" runat="server" Text="Confirmar Voucher" OnClick="BtnConfigVouchers_Click" />
 
             <asp:Label ID="lblPassword" runat="server" CssClass="visually-hidden" AssociatedControlID="txtCodigo"></asp:Label>
 

@@ -1,18 +1,19 @@
 ﻿using dominio;
+using negocio;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
-namespace Negocio
+namespace negocio
 {
     public class ClienteNegocio
     {
-
-
         public List<Cliente> clientes()
         {
 
@@ -21,30 +22,21 @@ namespace Negocio
             SqlCommand comando = new SqlCommand();
             SqlDataReader lector;
 
-
-
             try
             {
 
-                // matias
-                //conexion.ConnectionString = "server = .\\SQLEXPRESS02; database = CATALOGO_P3_DB; integrated security =true ;";
-
-
                 comando.CommandType = System.Data.CommandType.Text;
 
-                /// ////matias
-                 comando.CommandText = "SELECT " +
-                "    ISNULL(C.ID, 0)        AS ID, " +
-                "    ISNULL(C.Nombre, '')   AS Nombre, " +
-                "    ISNULL(C.Apellido, '') AS Apellido, " +
-                "    ISNULL(C.Dni, '')      AS Dni, " +
-                "    ISNULL(C.Email, '')    AS Email, " +
-                "    ISNULL(C.ciudad, '')   AS ciudad, " +
-                "    ISNULL(C.cp, '')       AS cp, " +
-                "    ISNULL(C.direccion, '') AS direccion " +
-                "FROM Clientes C";
-
-
+                comando.CommandText = "SELECT " +
+               "    ISNULL(C.ID, 0)        AS ID, " +
+               "    ISNULL(C.Nombre, '')   AS Nombre, " +
+               "    ISNULL(C.Apellido, '') AS Apellido, " +
+               "    ISNULL(C.Dni, '')      AS Dni, " +
+               "    ISNULL(C.Email, '')    AS Email, " +
+               "    ISNULL(C.ciudad, '')   AS ciudad, " +
+               "    ISNULL(C.cp, '')       AS cp, " +
+               "    ISNULL(C.direccion, '') AS direccion " +
+               "FROM Clientes C";
 
                 comando.Connection = conexion;
                 conexion.Open();
@@ -82,18 +74,93 @@ namespace Negocio
                 throw ex;
             }
 
-
-
-
-
-
-
-
-
         }
 
+        public Cliente BuscarPorDocumento(string documento)
+        {
+            if (string.IsNullOrWhiteSpace(documento))
+                return null;
 
+            AccesoDatos datos = new AccesoDatos();
 
+            try
+            {
+                datos.SetearConsulta(@"
+            SELECT TOP (1)
+                Id,
+                Documento,
+                Nombre,
+                Apellido,
+                Email,
+                Direccion,
+                Ciudad,
+                CP
+            FROM Clientes
+            WHERE Documento = @doc;");
 
-   }
+                datos.SetearParametros("@doc", documento.Trim());
+                datos.EjecutarLectura();
+
+                if (!datos.Lector.Read())
+                    return null;
+
+                var reader = datos.Lector;
+
+               
+                int GetColumnIndex(string name) => reader.GetOrdinal(name);
+                string GetStringOrEmpty(string name) => reader.IsDBNull(GetColumnIndex(name)) ? string.Empty : reader[name].ToString();
+
+                int cp = reader.IsDBNull(GetColumnIndex("CP")) ? 0 : reader.GetInt32(GetColumnIndex("CP"));
+
+                return new Cliente
+                {
+                    Id = reader.IsDBNull(GetColumnIndex("Id")) ? 0 : reader.GetInt32(GetColumnIndex("Id")),
+                    Documento = GetStringOrEmpty("Documento"),
+                    Nombre = GetStringOrEmpty("Nombre"),
+                    Apellido = GetStringOrEmpty("Apellido"),
+                    Email = GetStringOrEmpty("Email"),
+                    Direccion = GetStringOrEmpty("Direccion"),
+                    Ciudad = GetStringOrEmpty("Ciudad"),
+                    CP = cp,
+                    Voucher = null
+                };
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
+        public void AgregarCliente(Cliente cliente)
+        {
+
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta(
+                    "INSERT INTO dbo.Clientes(Documento, Nombre, Apellido, Email, Direccion, Ciudad, CP)" +
+                    "VALUES(@Documento, @Nombre, @Apellido, @Email, @Direccion, @Ciudad, @CP);"
+                    );
+
+                datos.SetearParametros("@Documento", cliente.Documento);
+                datos.SetearParametros("@Nombre", cliente.Nombre);
+                datos.SetearParametros("@Apellido", cliente.Apellido);
+                datos.SetearParametros("@Email", cliente.Email);
+                datos.SetearParametros("@Direccion", cliente.Direccion);
+                datos.SetearParametros("@Ciudad", cliente.Ciudad);
+                datos.SetearParametros("@CP", cliente.CP);
+
+                datos.EjecutarAccion();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+    }
 }
+

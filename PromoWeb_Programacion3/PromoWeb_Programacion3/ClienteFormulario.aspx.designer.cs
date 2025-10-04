@@ -24,6 +24,15 @@ namespace PromoWeb_Programacion3
         protected global::System.Web.UI.WebControls.Label lblNombrePremio;
 
         /// <summary>
+        /// Control lblVoucherUSado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblVoucherUSado;
+
+        /// <summary>
         /// Control txtDocumento.
         /// </summary>
         /// <remarks>
@@ -31,6 +40,15 @@ namespace PromoWeb_Programacion3
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDocumento;
+
+        /// <summary>
+        /// Control docStatus.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl docStatus;
 
         /// <summary>
         /// Control txtNombre.
@@ -49,6 +67,24 @@ namespace PromoWeb_Programacion3
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtApellido;
+
+        /// <summary>
+        /// Control txtEmail.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtEmail;
+
+        /// <summary>
+        /// Control txtDireccion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDireccion;
 
         /// <summary>
         /// Control txtCiudad.

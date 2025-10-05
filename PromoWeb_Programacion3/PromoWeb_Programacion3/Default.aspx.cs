@@ -60,7 +60,6 @@ namespace PromoWeb_Programacion3
 
 
                 Session.Add("voucher", txtCodigo.Text.ToLower());
-                string NombreVoucher = Session["voucher"].ToString();
 
                 Response.Redirect("SeleccionPremio.aspx");
                 return;

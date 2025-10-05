@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace PromoWeb_Programacion3
 {
-    public partial class WebForm2 : System.Web.UI.Page
+    public partial class ClienteFormulario : System.Web.UI.Page
     {
         protected bool ClienteEncontrado
         {
@@ -62,12 +62,12 @@ namespace PromoWeb_Programacion3
             if (encontrado)
             {
                 docStatus.Attributes["class"] = clasesBase + "alert-success";
-                docStatus.InnerHtml = $"Cliente encontrado para DNI <strong>{documento}</strong>.";
+                docStatus.InnerHtml = $"Cliente encontrado para Documento <strong>{documento}</strong>.";
             }
             else
             {
                 docStatus.Attributes["class"] = clasesBase + "alert-warning";
-                docStatus.InnerHtml = $"No se encontró cliente con DNI <strong>{documento}</strong>. " +
+                docStatus.InnerHtml = $"No se encontró cliente con Documento <strong>{documento}</strong>. " +
                                       $"Puedes completar los datos para registrarlo.";
             }
         }
@@ -193,7 +193,12 @@ namespace PromoWeb_Programacion3
             string documento = txtDocumento.Text?.Trim();
             voucherNegocio.ActualizarVoucher(Session["voucher"] as string,
                 clienteNegocio.BuscarPorDocumento(documento).Id,
-                int.Parse(Request.QueryString["premioId"]));
+                int.Parse(Request.QueryString["premioId"])
+                );
+
+            Session["MsgOK"] = "Voucher usado correctamente, ¡Buena suerte!";
+            Response.Redirect("Premios.aspx");
+
 
         }
     }

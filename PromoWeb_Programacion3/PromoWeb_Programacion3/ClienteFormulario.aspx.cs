@@ -189,6 +189,7 @@ namespace PromoWeb_Programacion3
                 nuevoCliente.CP = int.Parse(txtCP.Text);
 
                 clienteNegocio.AgregarCliente(nuevoCliente);
+
             }
             string documento = txtDocumento.Text?.Trim();
             voucherNegocio.ActualizarVoucher(Session["voucher"] as string,
@@ -197,6 +198,8 @@ namespace PromoWeb_Programacion3
                 );
 
             Session["MsgOK"] = "Voucher usado correctamente, ¡Buena suerte!";
+            //aqui va funcion de correo 
+
             Response.Redirect("Premios.aspx");
 
 

@@ -8,7 +8,7 @@ namespace PromoWeb_Programacion3
 {
     public partial class SeleccionPremio : System.Web.UI.Page
     {
-        public List<Articulo> ListaArticulo { get; set; }
+      
 
         protected void Page_Load(object sender, EventArgs e)
         {

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MiMaster.Master" AutoEventWireup="true" CodeBehind="premios.aspx.cs" Inherits="PromoWeb_Programacion3.WebForm1" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MiMaster.Master" AutoEventWireup="true" CodeBehind="Premios.aspx.cs" Inherits="PromoWeb_Programacion3.Premios" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -9,6 +9,9 @@
         <div class="header">
             <h1><i class="fas fa-gift"></i>Gran Promoción</h1>
             <p class="mb-0">¡Participa y gana increíbles premios!</p>
+
+            <!-- Mensaje de exito -->
+            <div id="premiosStatus" runat="server" class="alert d-none mt-3 py-2 px-3" role="alert"></div>
 
             <div class="d-grid boton-animado-contenedor">
                 <asp:Button class="boton-animado" ID="btnIrCanjearCupon" runat="server" OnClick="btnIrCanjearCupon_Click" Text="¡Canjea tu Cupon Aqui!" />

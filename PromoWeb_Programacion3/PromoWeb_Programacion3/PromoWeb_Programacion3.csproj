@@ -71,7 +71,7 @@
     <Content Include="SeleccionPremio.aspx" />
     <Content Include="VouchersInvalido.aspx" />
     <Content Include="Web.config" />
-    <Content Include="premios.aspx" />
+    <Content Include="Premios.aspx" />
     <Content Include="ClienteFormulario.aspx" />
   </ItemGroup>
   <ItemGroup>
@@ -100,12 +100,12 @@
       <DependentUpon>MiMaster.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="premios.aspx.cs">
-      <DependentUpon>premios.aspx</DependentUpon>
+    <Compile Include="Premios.aspx.cs">
+      <DependentUpon>Premios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="premios.aspx.designer.cs">
-      <DependentUpon>premios.aspx</DependentUpon>
+    <Compile Include="Premios.aspx.designer.cs">
+      <DependentUpon>Premios.aspx</DependentUpon>
     </Compile>
     <Compile Include="ClienteFormulario.aspx.cs">
       <DependentUpon>ClienteFormulario.aspx</DependentUpon>

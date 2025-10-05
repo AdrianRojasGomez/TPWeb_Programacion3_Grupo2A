@@ -23,7 +23,7 @@
 
 
     <div class="d-flex justify-content-center p-4">
-        <asp:Button ID="Button1" OnClick="Button1_Click" runat="server"   CssClass=" btn btn-primary mb-3"    Text="presione para volver al inicio"  />
+        <asp:Button ID="Button1" OnClick="Button1_Click" runat="server"   CssClass=" btn btn-primary mb-3"    Text="Presione para volver a la pagina de Seleccion de Voucher"  />
 
     </div>
 

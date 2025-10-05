@@ -11,7 +11,7 @@
 
     <div class="container">
         <div class="header">
-            <h1><i class="fas fa-gift"></i>Introduce tu codigo Promocional Aqui!</h1>
+            <h1><i class="fas fa-gift"></i>¡Introduce tu codigo Promocional Aqui!</h1>
             <p class="mb-0">¡Participa y gana increíbles premios!</p>
 
         </div>
